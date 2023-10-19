@@ -2901,8 +2901,8 @@ Esta guía está también disponible en los siguientes idiomas:
 
 - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Portugués de Brasil**: [vitorfreitas/clean-code-typescript](https://github.com/vitorfreitas/clean-code-typescript)
 - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chino**:
-- [beginor/clean-code-typescript](https://github.com/beginor/clean-code-typescript)
-- [pipiliang/clean-code-typescript](https://github.com/pipiliang/clean-code-typescript)
+  - [beginor/clean-code-typescript](https://github.com/beginor/clean-code-typescript)
+  - [pipiliang/clean-code-typescript](https://github.com/pipiliang/clean-code-typescript)
 - ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **Francés**: [ralflorent/clean-code-typescript](https://github.com/ralflorent/clean-code-typescript)
 - ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japonés**: [MSakamaki/clean-code-typescript](https://github.com/MSakamaki/clean-code-typescript)
 - ![ko](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Coreano**: [738/clean-code-typescript](https://github.com/738/clean-code-typescript)
