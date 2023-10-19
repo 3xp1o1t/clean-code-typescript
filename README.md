@@ -1,69 +1,66 @@
 # clean-code-typescript [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Clean%20Code%20Typescript&url=https://github.com/labs42io/clean-code-typescript)
 
-Clean Code concepts adapted for TypeScript.  
-Inspired from [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript).
+Conceptos del "Clean Code (código limpio)" adaptados a TypeScript.
+Inspirado del repositorio [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript).
+Traducción del repositorio [clean-code-typescript](https://github.com/labs42io/clean-code-typescript).
 
-## Table of Contents
+## Tabla de contenidos
 
-  1. [Introduction](#introduction)
-  2. [Variables](#variables)
-  3. [Functions](#functions)
-  4. [Objects and Data Structures](#objects-and-data-structures)
-  5. [Classes](#classes)
-  6. [SOLID](#solid)
-  7. [Testing](#testing)
-  8. [Concurrency](#concurrency)
-  9. [Error Handling](#error-handling)
-  10. [Formatting](#formatting)
-  11. [Comments](#comments)
-  12. [Translations](#translations)
+1. [Introducción](#introducción)
+2. [Variables](#variables)
+3. [Funciones](#funciones)
+4. [Objetos y Estructura de Datos](#objetos-y-estructura-de-datos)
+5. [Clases](#clases)
+6. [Principios SOLID](#principios-solid)
+7. [Pruebas](#pruebas)
+8. [Concurrencia](#concurrencia)
+9. [Manejo de Errores](#manejo-de-errores)
+10. [Formato](#formato)
+11. [Comentarios](#comentarios-todo)
+12. [Traducciones](#traducciones)
 
-## Introduction
+## Introducción
 
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for TypeScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in TypeScript.
+"Principios de la ingeniería de software", extraídos del libro de Robert C. Martin's
+[_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
+adaptados a TypeScript. Esta no es una guía de estilos. Es una guía para hacer softwares
+[legibles, reusables y refactorizables](https://github.com/ryanmcdermott/3rs-of-software-architecture) utilizando TypeScript.
+No todos los principios aquí mencionados tienen que ser estrictamente seguidos, menos aún tienen
+que ser aceptados universalmente. Estas son tan solo directrices.
+Directrices que se han definido a lo largo de muchos años de experiencia colectiva por los autores de
+_Clean Code_.
+Nuestro trabajo como ingenieros de software tiene poco más de 50 años. Aún seguimos
+aprendiendo muchas cosas. Cuando la arquitectura de software sea tan antigua como
+lo es la misma arquitectura, tal vez tendremos que seguir directrices más duras. Por ahora,
+dejemos que estas directrices funcionen como punto para evaluar la calidad del
+código de TypeScript que tú y tu equipo producen.
+Una cosa más: saber esto no te hará un mejor desarrollador de software y haber
+trabajado con esta tecnología por muchos años no quiere decir que no cometerás
+errores. Cada pieza de código comienza como un borrador, como arcilla mojada
+que se transforma luego en la forma deseada. Finalmente, limpiamos las imperfecciones
+cuando las identificamos con la ayuda de nuestro equipo. No te mortifiques por códigos
+en borrador que necesiten mejoras. En vez de eso, ¡enfócate en mejorar el código!
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-*Clean Code*.
-
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-TypeScript code that you and your team produce.
-
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
-
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
 ## Variables
 
-### Use meaningful variable names
+### Usar nombres de variables que tengan sentido
 
-Distinguish names in such a way that the reader knows what the differences offer.
+Distingue los nombres de las variables para que el lector sepa a qué se refieren.
 
-**Bad:**
+**Mal:**
 
 ```ts
 function between<T>(a1: T, a2: T, a3: T): boolean {
   return a2 <= a1 && a1 <= a3;
 }
-
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function between<T>(value: T, left: T, right: T): boolean {
@@ -71,37 +68,37 @@ function between<T>(value: T, left: T, right: T): boolean {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Use pronounceable variable names
+### Usar nombres de variables que sean pronunciables
 
-If you can’t pronounce it, you can’t discuss it without sounding like an idiot.
+Si no puedes pronunciarlo, no puedes discutir sobre la variable sin sonar como idiota.
 
-**Bad:**
+**Mal:**
 
 ```ts
 type DtaRcrd102 = {
   genymdhms: Date;
   modymdhms: Date;
   pszqint: number;
-}
+};
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 type Customer = {
   generationTimestamp: Date;
   modificationTimestamp: Date;
   recordId: number;
-}
+};
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Use the same vocabulary for the same type of variable
+### Usa el mismo vocabulario para el mismo tipo de variable
 
-**Bad:**
+**Mal:**
 
 ```ts
 function getUserInfo(): User;
@@ -109,66 +106,66 @@ function getUserDetails(): User;
 function getUserData(): User;
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function getUser(): User;
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Use searchable names
+### Usa nombres fáciles de encontrar
 
-We will read more code than we will ever write. It's important that the code we do write must be readable and searchable. By *not* naming variables that end up being meaningful for understanding our program, we hurt our readers. Make your names searchable. Tools like [ESLint](https://typescript-eslint.io/) can help identify unnamed constants (also known as magic strings and magic numbers).
+Leeremos más código del que escribiremos. Es importante que el código que escribamos sea legible y pueda ser encontrado con facilidad. Cuando nombramos variables con nombres sin sentido o que son difíciles de encontrar, nuestros lectores sufren. Elige un nombre que sea fácil de encontrar. Herramientas como [Elllnt](https://typescript-eslint.io/) pueden ayudar a identificar constantes.
+(También conocidas como cadenas mágicas y números mágicos)
 
-**Bad:**
+**Mal:**
 
 ```ts
-// What the heck is 86400000 for?
+// Que significa este numero 86400000?
 setTimeout(restart, 86400000);
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
-// Declare them as capitalized named constants.
-const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000; // 86400000
-
-setTimeout(restart, MILLISECONDS_PER_DAY);
+// Decláralas como constantes con nombre en mayúsculas.
+const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
+setTimeout(restart, MILLISECONDS_IN_A_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Use explanatory variables
+### Usa nombres de variables explicativas
 
-**Bad:**
+**Mal:**
 
 ```ts
 declare const users: Map<string, User>;
 
 for (const keyValue of users) {
-  // iterate through users map
+  // iterar el mapa de usuarios
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 declare const users: Map<string, User>;
 
 for (const [id, user] of users) {
-  // iterate through users map
+  // iterar el mapa de usuarios
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Avoid Mental Mapping
+### Evita el mapeo mental
 
-Explicit is better than implicit.  
-*Clarity is king.*
+Lo explícito es mejor que lo implícito.
+_La claridad es escencial._
 
-**Bad:**
+**Mal:**
 
 ```ts
 const u = getUser();
@@ -176,7 +173,7 @@ const s = getSubscription();
 const t = charge(u, s);
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 const user = getUser();
@@ -184,47 +181,47 @@ const subscription = getSubscription();
 const transaction = charge(user, subscription);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Don't add unneeded context
+### No agregar contexto innecesario
 
-If your class/type/object name tells you something, don't repeat that in your variable name.
+Si el nombre de tu clase/tipo/objeto expresa algo, no lo repitas en el nombre de tu variable.
 
-**Bad:**
+**Mal:**
 
 ```ts
 type Car = {
   carMake: string;
   carModel: string;
   carColor: string;
-}
+};
 
 function print(car: Car): void {
   console.log(`${car.carMake} ${car.carModel} (${car.carColor})`);
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 type Car = {
   make: string;
   model: string;
   color: string;
-}
+};
 
 function print(car: Car): void {
   console.log(`${car.make} ${car.model} (${car.color})`);
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Usar argumentos por defecto en lugar de condicionales
 
-Default arguments are often cleaner than short circuiting.
+Los argumentos por defecto son generalmente más legibles que las condicionales.
 
-**Bad:**
+**Mal:**
 
 ```ts
 function loadPages(count?: number) {
@@ -233,7 +230,7 @@ function loadPages(count?: number) {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function loadPages(count: number = 10) {
@@ -241,14 +238,14 @@ function loadPages(count: number = 10) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Use enum to document the intent
+### Utilizar enumeraciones (enum) para darle sentido al código
 
-Enums can help you document the intent of the code. For example when we are concerned about values being
-different rather than the exact value of those.
+Los "enums" pueden ayudar a darle sentido al código. Por ejemplo, cuando nos preocupa que algunos valores sean
+diferentes en lugar de que tengan el valor exacto.
 
-**Bad:**
+**Mal:**
 
 ```ts
 const GENRE = {
@@ -256,22 +253,22 @@ const GENRE = {
   DRAMA: 'drama',
   COMEDY: 'comedy',
   DOCUMENTARY: 'documentary',
-}
+};
 
 projector.configureFilm(GENRE.COMEDY);
 
 class Projector {
-  // declaration of Projector
+  // declaracion del proyector
   configureFilm(genre) {
     switch (genre) {
       case GENRE.ROMANTIC:
-        // some logic to be executed 
+      // alguna logica a ser ejecutada
     }
   }
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 enum GENRE {
@@ -288,52 +285,57 @@ class Projector {
   configureFilm(genre) {
     switch (genre) {
       case GENRE.ROMANTIC:
-        // some logic to be executed 
+      // alguna logica a ser ejecutada
     }
   }
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-## Functions
+## Funciones
 
-### Function arguments (2 or fewer ideally)
+### Argumentos de las funciones (2 o menos idealmente)
 
-Limiting the number of function parameters is incredibly important because it makes testing your function easier.
-Having more than three leads to a combinatorial explosion where you have to test tons of different cases with each separate argument.  
+Limitar la cantidad de los parámetros de las funciones es increíblemente importante porque hace que sea más fácil probar tus funciones.
+Tener más de tres conduce a una explosión combinatoria donde tienes que probar una cantidad muy grande de casos diferentes con cada
+argumento por separado.
+Uno o dos argumentos es lo ideal. Deberías evitar tres argumentos en la medida de lo posible. Cualquier cosa más que eso debería ser
+consolidada.
+Usualmente, si tienes más de dos argumentos, tu función está intendando hacer más de lo que puede.
+En casos en los que no sea así, la mayoría de las veces bastará como un objeto de nivel superior como argumento.
+Considera el uso de objetos literales si necesitas muchos argumentos.
+Para que sea obvio cuales propiedades son las que la función espera, puedes usar la sintaxis ["destructuring (destructuración)"](https://basarat.gitbook.io/typescript/future-javascript/destructuring).
+Esto tiene algunas ventajas:
 
-One or two arguments is the ideal case, and three should be avoided if possible. Anything more than that should be consolidated.
-Usually, if you have more than two arguments then your function is trying to do too much.
-In cases where it's not, most of the time a higher-level object will suffice as an argument.  
+1. Cuando alguien lee la firma de una función, inmediatamente queda claro qué propiedades se están utilizando.
+2. Puede ser utilizado para simular parámetros con nombres.
+3. La destructuración también clona los valores del primitivo específico del objeto del argumento pasado en la función. Esto ayuda a prevenir efectos secundarios. Nota: los objetos y los arreglos que son destructurados del objeto del argumento NO SON clonados.
+4. TypeScript te avisa sobre propiedades no utilizadas, cosa que sería imposible sin la destructuración.
 
-Consider using object literals if you are finding yourself needing a lot of arguments.  
-
-To make it obvious what properties the function expects, you can use the [destructuring](https://basarat.gitbook.io/typescript/future-javascript/destructuring) syntax.
-This has a few advantages:
-
-1. When someone looks at the function signature, it's immediately clear what properties are being used.
-
-2. It can be used to simulate named parameters.
-
-3. Destructuring also clones the specified primitive values of the argument object passed into the function. This can help prevent side effects. Note: objects and arrays that are destructured from the argument object are NOT cloned.
-
-4. TypeScript warns you about unused properties, which would be impossible without destructuring.
-
-**Bad:**
+**Mal:**
 
 ```ts
-function createMenu(title: string, body: string, buttonText: string, cancellable: boolean) {
+function createMenu(
+  title: string,
+  body: string,
+  buttonText: string,
+  cancellable: boolean,
+) {
   // ...
 }
-
 createMenu('Foo', 'Bar', 'Baz', true);
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
-function createMenu(options: { title: string, body: string, buttonText: string, cancellable: boolean }) {
+function createMenu(options: {
+  title: string;
+  body: string;
+  buttonText: string;
+  cancellable: boolean;
+}) {
   // ...
 }
 
@@ -341,15 +343,19 @@ createMenu({
   title: 'Foo',
   body: 'Bar',
   buttonText: 'Baz',
-  cancellable: true
+  cancellable: true,
 });
 ```
 
-You can further improve readability by using [type aliases](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases):
+Puedes mejorar aún más la legibilidad utilizando ["type aliases (tipos de alias)"](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases):
 
 ```ts
-
-type MenuOptions = { title: string, body: string, buttonText: string, cancellable: boolean };
+type MenuOptions = {
+  title: string;
+  body: string;
+  buttonText: string;
+  cancellable: boolean;
+};
 
 function createMenu(options: MenuOptions) {
   // ...
@@ -359,17 +365,16 @@ createMenu({
   title: 'Foo',
   body: 'Bar',
   buttonText: 'Baz',
-  cancellable: true
+  cancellable: true,
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Functions should do one thing
+### Las funciones deben realizar solo una cosa
 
-This is by far the most important rule in software engineering. When functions do more than one thing, they are harder to compose, test, and reason about. When you can isolate a function to just one action, it can be refactored easily and your code will read much cleaner. If you take nothing else away from this guide other than this, you'll be ahead of many developers.
-
-**Bad:**
+Esta es sin duda la regla más importante en la ingeniería de software. Cuando las funciones realizan más de una cosa, se vuelven más difíciles de componer, probar y razonar. Cuando puedes aislar una función a una sola cosa, esta puede ser fácilmente refactorizada y tu código se verá mucho más limpio. Si tan solo tomaras esta declaración de esta guía, estarías por delante de muchos desarrolladores.
+**Mal:**
 
 ```ts
 function emailActiveClients(clients: Client[]) {
@@ -382,7 +387,7 @@ function emailActiveClients(clients: Client[]) {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function emailActiveClients(clients: Client[]) {
@@ -395,74 +400,71 @@ function isActiveClient(client: Client) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Function names should say what they do
+### Los nombres de las funciones deben expresar qué accion ejercen
 
-**Bad:**
+**Mal:**
 
 ```ts
 function addToDate(date: Date, month: number): Date {
   // ...
 }
-
 const date = new Date();
-
 // It's hard to tell from the function name what is added
 addToDate(date, 1);
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function addMonthToDate(date: Date, month: number): Date {
   // ...
 }
-
 const date = new Date();
 addMonthToDate(date, 1);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Functions should only be one level of abstraction
+### Las funciones deben ser de solo un nivel de abstracción
 
-When you have more than one level of abstraction your function is usually doing too much. Splitting up functions leads to reusability and easier testing.
+Cuando tienes más de un nivel de abstracción tu función usualmente estará sobrecargada. Partir las funciones provee reutilización y a la vez son más fáciles de probar.
 
-**Bad:**
+**Mal:**
 
 ```ts
 function parseCode(code: string) {
-  const REGEXES = [ /* ... */ ];
+  const REGEXES = [
+    /* ... */
+  ];
   const statements = code.split(' ');
   const tokens = [];
-
   REGEXES.forEach((regex) => {
     statements.forEach((statement) => {
       // ...
     });
   });
-
   const ast = [];
   tokens.forEach((token) => {
     // lex...
   });
-
   ast.forEach((node) => {
     // parse...
   });
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
-const REGEXES = [ /* ... */ ];
+const REGEXES = [
+  /* ... */
+];
 
 function parseCode(code: string) {
   const tokens = tokenize(code);
   const syntaxTree = parse(tokens);
-
   syntaxTree.forEach((node) => {
     // parse...
   });
@@ -471,42 +473,36 @@ function parseCode(code: string) {
 function tokenize(code: string): Token[] {
   const statements = code.split(' ');
   const tokens: Token[] = [];
-
   REGEXES.forEach((regex) => {
     statements.forEach((statement) => {
-      tokens.push( /* ... */ );
+      tokens.push(/* ... */);
     });
   });
-
   return tokens;
 }
 
 function parse(tokens: Token[]): SyntaxTree {
   const syntaxTree: SyntaxTree[] = [];
   tokens.forEach((token) => {
-    syntaxTree.push( /* ... */ );
+    syntaxTree.push(/* ... */);
   });
-
   return syntaxTree;
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Remove duplicate code
+### Elimina código que esté duplicado
 
-Do your absolute best to avoid duplicate code.
-Duplicate code is bad because it means that there's more than one place to alter something if you need to change some logic.  
+Enfócate en evitar código duplicado.
+El código que está duplicado es malo ya que hay un trozo de código más que modificar si necesitas cambiar algo.
+Imagina que tienes un restaurante y controlas tu inventario: todos los tomates, las cebollas, las especias, etc.
+Si tienes múltiples listas en las que está esta información, tendrás que actualizarlas todas cuando sirves un plato con tomates.
+Si solo tienes una lista, ¡solo tendrás que actualizarla en un mismo lugar!
+A veces tienes piezas de código duplicado porque difieren en pequeñas cosas, que comparten mucho en común, pero que sus diferencias te fuerzan a tener dos o más funciones separadas que hacen mucho de las mismas cosas. Eliminar el código duplicado significa crear una abstracción que pueda soportar este conjunto de cosas diferentes con tan solo una función, módulo o clase.
+Tener la abstracción correcta es escencial, es por esto que deberías seguir los principios ["Solid (sólido)"](#principios-solid). Las malas abstracciones pueden ser peores que el código duplicado, así que, ¡ten cuidado! Habiendo dicho esto, si puedes hacer una buena abstracción, ¡hazlo! No repitas el código, si no, te encontrarás teniendo que actualizar el código en diferentes lugares cada vez que quieras cambiar tan solo una cosa.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your tomatoes, onions, garlic, spices, etc.
-If you have multiple lists that you keep this on, then all have to be updated when you serve a dish with tomatoes in them.
-If you only have one list, there's only one place to update!  
-
-Oftentimes you have duplicate code because you have two or more slightly different things, that share a lot in common, but their differences force you to have two or more separate functions that do much of the same things. Removing duplicate code means creating an abstraction that can handle this set of different things with just one function/module/class.  
-
-Getting the abstraction right is critical, that's why you should follow the [SOLID](#solid) principles. Bad abstractions can be worse than duplicate code, so be careful! Having said this, if you can make a good abstraction, do it! Don't repeat yourself, otherwise, you'll find yourself updating multiple places anytime you want to change one thing.
-
-**Bad:**
+**Mal:**
 
 ```ts
 function showDeveloperList(developers: Developer[]) {
@@ -518,13 +514,12 @@ function showDeveloperList(developers: Developer[]) {
     const data = {
       expectedSalary,
       experience,
-      githubLink
+      githubLink,
     };
 
     render(data);
   });
 }
-
 function showManagerList(managers: Manager[]) {
   managers.forEach((manager) => {
     const expectedSalary = manager.calculateExpectedSalary();
@@ -534,7 +529,7 @@ function showManagerList(managers: Manager[]) {
     const data = {
       expectedSalary,
       experience,
-      portfolio
+      portfolio,
     };
 
     render(data);
@@ -542,7 +537,7 @@ function showManagerList(managers: Manager[]) {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class Developer {
@@ -550,7 +545,7 @@ class Developer {
   getExtraDetails() {
     return {
       githubLink: this.githubLink,
-    }
+    };
   }
 }
 
@@ -559,11 +554,11 @@ class Manager {
   getExtraDetails() {
     return {
       portfolio: this.portfolio,
-    }
+    };
   }
 }
 
-function showEmployeeList(employee: (Developer | Manager)[]) {
+function showEmployeeList(employee: Developer | Manager) {
   employee.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
@@ -580,7 +575,8 @@ function showEmployeeList(employee: (Developer | Manager)[]) {
 }
 ```
 
-You may also consider adding a union type, or common parent class if it suits your abstraction.
+También puede considerar añadir un tipo de unión, o una clase padre común si se adapta a su abstracción.
+
 ```ts
 class Developer {
   // ...
@@ -599,49 +595,57 @@ function showEmployeeList(employee: Employee[]) {
 
 ```
 
-You should be critical about code duplication. Sometimes there is a tradeoff between duplicated code and increased complexity by introducing unnecessary abstraction. When two implementations from two different modules look similar but live in different domains, duplication might be acceptable and preferred over extracting the common code. The extracted common code, in this case, introduces an indirect dependency between the two modules.
+Deberías ser crítico sobre el código duplicado. A veces hay más intercambio entre código duplicado y se vuelve más complejo cuando introduces una abstracción innecesaria. Cuando dos implementaciones de dos módulos diferentes se ven similares pero se encuentran en diferentes dominios, duplicar el código es aceptado y preferible a la extracción del código común. El código común extraído en este caso introduce una dependencia indirecta entre los dos módulos.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Set default objects with Object.assign or destructuring
+### Establece objetos predeterminados con "Object.assign" o destructurando
 
-**Bad:**
+**Mal:**
 
 ```ts
-type MenuConfig = { title?: string, body?: string, buttonText?: string, cancellable?: boolean };
-
+type MenuConfig = {
+  title?: string;
+  body?: string;
+  buttonText?: string;
+  cancellable?: boolean;
+};
 function createMenu(config: MenuConfig) {
   config.title = config.title || 'Foo';
   config.body = config.body || 'Bar';
   config.buttonText = config.buttonText || 'Baz';
-  config.cancellable = config.cancellable !== undefined ? config.cancellable : true;
-
+  config.cancellable =
+    config.cancellable !== undefined ? config.cancellable : true;
   // ...
 }
-
 createMenu({ body: 'Bar' });
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
-type MenuConfig = { title?: string, body?: string, buttonText?: string, cancellable?: boolean };
-
+type MenuConfig = {
+  title?: string;
+  body?: string;
+  buttonText?: string;
+  cancellable?: boolean;
+};
 function createMenu(config: MenuConfig) {
-  const menuConfig = Object.assign({
-    title: 'Foo',
-    body: 'Bar',
-    buttonText: 'Baz',
-    cancellable: true
-  }, config);
-
+  const menuConfig = Object.assign(
+    {
+      title: 'Foo',
+      body: 'Bar',
+      buttonText: 'Baz',
+      cancellable: true,
+    },
+    config,
+  );
   // ...
 }
-
 createMenu({ body: 'Bar' });
 ```
 
-Or, you could use the spread operator:
+O, podrias usar el "spread operator" (operador de dispersión)
 
 ```ts
 function createMenu(config: MenuConfig) {
@@ -656,32 +660,38 @@ function createMenu(config: MenuConfig) {
   // ...
 }
 ```
-The spread operator and `Object.assign()` are very similar.
-The main difference is that spreading defines new properties, while `Object.assign()` sets them. More detailed, the difference is explained in [this](https://stackoverflow.com/questions/32925460/object-spread-vs-object-assign) thread.
 
-Alternatively, you can use destructuring with default values:
+Alternativamente, puedes destructurar con valores por defecto:
 
 ```ts
-type MenuConfig = { title?: string, body?: string, buttonText?: string, cancellable?: boolean };
-
-function createMenu({ title = 'Foo', body = 'Bar', buttonText = 'Baz', cancellable = true }: MenuConfig) {
+type MenuConfig = {
+  title?: string;
+  body?: string;
+  buttonText?: string;
+  cancellable?: boolean;
+};
+function createMenu({
+  title = 'Foo',
+  body = 'Bar',
+  buttonText = 'Baz',
+  cancellable = true,
+}: MenuConfig) {
   // ...
 }
-
 createMenu({ body: 'Bar' });
 ```
 
-To avoid any side effects and unexpected behavior by passing in explicitly the `undefined` or `null` value, you can tell the TypeScript compiler to not allow it.
-See [`--strictNullChecks`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#--strictnullchecks) option in TypeScript.
+Para evitar cualquier efecto secundario o comportamiento inesperado pasando explícitamente el valor `undefined` o `null`, puedes decirle al compilador de TypeScript que no lo permita.
+Lee la opción [`--strictNullChecks`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#--strictnullchecks) en TypeScript.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Don't use flags as function parameters
+### No uses indicadores como parámetros de funciones
 
-Flags tell your user that this function does more than one thing.
-Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+Las indicaciones le dicen al usuario que una función hace más que una sola cosa.
+Las funciones deben hacer solo una cosa. Divide tus funciones si siguen diferentes rutas de código basadas en boolean (booleano).
 
-**Bad:**
+**Mal:**
 
 ```ts
 function createFile(name: string, temp: boolean) {
@@ -693,101 +703,92 @@ function createFile(name: string, temp: boolean) {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function createTempFile(name: string) {
   createFile(`./temp/${name}`);
 }
-
 function createFile(name: string) {
   fs.create(name);
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Avoid Side Effects (part 1)
+### Evita efectos secundarios (parte 1)
 
-A function produces a side effect if it does anything other than take a value in and return another value or values.
-A side effect could be writing to a file, modifying some global variable, or accidentally wiring all your money to a stranger.  
+Una función produce un efecto secundario si no hace más que tomar un valor y devolver otro(s) valor(es).
+Un efecto secundario pudiera ser: modificar un archivo, modificar una variable global o accidentalmente enviar todo tu dinero a un extraño.
+Ahora, necesitas tener efectos secundarios en un programa en ciertas ocasiones. Al igual que el ejemplo anterior, tal vez tendrás que modificar un archivo. Lo ideal es centralizar dónde estás haciendo esto. No tengas demasiadas funciones y clases que modifiquen un archivo en particular.
+Ten un servicio que lo haga. Solo uno.
+El punto principal es evitar problemas como compartir el estado entre objetos sin ninguna estructura, usatilizando tipos de datos mutables que puedan ser escritos por cualquier cosa y no centralizar dónde ocurren los efectos secundarios. Si puedes hacer esto, serás más feliz que la gran mayoría de los demás programadores.
 
-Now, you do need to have side effects in a program on occasion. Like the previous example, you might need to write to a file.
-What you want to do is to centralize where you are doing this. Don't have several functions and classes that write to a particular file.
-Have one service that does it. One and only one.  
-
-The main point is to avoid common pitfalls like sharing state between objects without any structure, using mutable data types that can be written to by anything, and not centralizing where your side effects occur. If you can do this, you will be happier than the vast majority of other programmers.
-
-**Bad:**
+**Mal:**
 
 ```ts
-// Global variable referenced by following function.
+// Variable global referenciada por la siguiente función.
 let name = 'Robert C. Martin';
-
 function toBase64() {
   name = btoa(name);
 }
-
 toBase64();
-// If we had another function that used this name, now it'd be a Base64 value
-
-console.log(name); // expected to print 'Robert C. Martin' but instead 'Um9iZXJ0IEMuIE1hcnRpbg=='
+// Si tuviéramos otra función que utilizara este nombre, ahora sería un valor en Base64
+console.log(name); // espera imprimir 'Robert C. Martin' pero en su lugar imprime 'Um9iZXJ0IEMuIE1hcnRpbg=='
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 const name = 'Robert C. Martin';
-
 function toBase64(text: string): string {
   return btoa(text);
 }
-
 const encodedName = toBase64(name);
 console.log(name);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Avoid Side Effects (part 2)
+### Evita efectos secundarios (parte 2)
 
-Browsers and Node.js process only JavaScript, therefore any TypeScript code has to be compiled before running or debugging.  In JavaScript, some values are unchangeable (immutable) and some are changeable (mutable). Objects and arrays are two kinds of mutable values so it's important to handle them carefully when they're passed as parameters to a function. A JavaScript function can change an object's properties or alter the contents of an array which could easily cause bugs elsewhere.
+Los navegadores y Node.js sólo procesan JavaScript, por lo que cualquier código TypeScript tiene que ser compilado antes de ejecutarse o depurarse. En JavaScript, algunos valores son inmutables y otros son mutables. Los objetos y las matrices son dos tipos de valores mutables, por lo que es importante manejarlos con cuidado cuando se pasan como parámetros a una función. Una función JavaScript puede cambiar las propiedades de un objeto o alterar el contenido de una matriz, lo que fácilmente podría causar errores en otro lugar.
 
-Suppose there's a function that accepts an array parameter representing a shopping cart. If the function makes a change in that shopping cart array - by adding an item to purchase, for example - then any other function that uses that same `cart` array will be affected by this addition. That may be great, however it could also be bad. Let's imagine a bad situation:
+Supongamos que hay una función que acepta como parámetro un array que representa un carrito de la compra. Si la función hace un cambio en ese array del carrito de la compra - añadiendo un artículo a comprar, por ejemplo - entonces cualquier otra función que utilice ese mismo array del carrito se verá afectada por esta adición. Eso puede ser genial, sin embargo también podría ser malo. Imaginemos una mala situación:
 
-The user clicks the "Purchase" button which calls a `purchase` function that spawns a network request and sends the `cart` array to the server. Because of a bad network connection, the `purchase` function has to keep retrying the request. Now, what if in the meantime the user accidentally clicks an "Add to Cart" button on an item they don't actually want before the network request begins? If that happens and the network request begins, then that purchase function will send the accidentally added item because the `cart` array was modified.
+El usuario hace clic en el botón "Comprar", que llama a una función de compra que genera una solicitud de red y envía la matriz del carro al servidor. Debido a una mala conexión de red, la función de compra tiene que seguir reintentando la petición. Ahora bien, ¿qué ocurre si mientras tanto el usuario pulsa accidentalmente el botón "Añadir a la cesta" en un artículo que en realidad no quiere antes de que comience la solicitud de red? Si eso ocurre y la petición de red comienza, entonces esa función de compra enviará el artículo añadido accidentalmente porque el array del carrito fue modificado.
 
-A great solution would be for the `addItemToCart` function to always clone the `cart`, edit it, and return the clone. This would ensure that functions that are still using the old shopping cart wouldn't be affected by the changes.
+Una buena solución sería que la función addItemToCart clonara siempre el carrito, lo editara y devolviera el clon. Esto aseguraría que las funciones que todavía están utilizando el antiguo carro de la compra no se verían afectadas por los cambios.
 
-Two caveats to mention to this approach:
+Dos advertencias a mencionar sobre este enfoque:
 
-1. There might be cases where you actually want to modify the input object, but when you adopt this programming practice you will find that those cases are pretty rare. Most things can be refactored to have no side effects! (see [pure function](https://en.wikipedia.org/wiki/Pure_function))
+1. Puede haber casos en los que realmente quieras modificar el objeto de entrada, pero cuando adoptes esta práctica de programación te darás cuenta de que esos casos son bastante raros. La mayoría de las cosas se pueden refactorizar para que no tengan efectos secundarios. (ver [función pura](https://en.wikipedia.org/wiki/Pure_function))
 
-2. Cloning big objects can be very expensive in terms of performance. Luckily, this isn't a big issue in practice because there are [great libraries](https://github.com/immutable-js/immutable-js) that allow this kind of programming approach to be fast and not as memory intensive as it would be for you to manually clone objects and arrays.
+2. Clonar objetos grandes puede ser muy costoso en términos de rendimiento. Afortunadamente, esto no es un gran problema en la práctica porque hay [grandes bibliotecas](https://github.com/immutable-js/immutable-js) que permiten que este tipo de enfoque de programación sea rápido y no tan intensivo en memoria como lo sería para ti clonar manualmente objetos y arrays.
 
-**Bad:**
+**Mal:**
 
 ```ts
 function addItemToCart(cart: CartItem[], item: Item): void {
   cart.push({ item, date: Date.now() });
-};
+}
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function addItemToCart(cart: CartItem[], item: Item): CartItem[] {
   return [...cart, { item, date: Date.now() }];
-};
+}
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Don't write to global functions
+### No escribas a funciones globales
 
-Polluting globals is a bad practice in JavaScript because you could clash with another library and the user of your API would be none-the-wiser until they get an exception in production. Let's think about an example: what if you wanted to extend JavaScript's native Array method to have a `diff` method that could show the difference between two arrays? You could write your new function to the `Array.prototype`, but it could clash with another library that tried to do the same thing. What if that other library was just using `diff` to find the difference between the first and last elements of an array? This is why it would be much better to just use classes and simply extend the `Array` global.
+Contaminar las funciones globales es una mala práctica en JavaScript ya que podría interferir con otra librería y el usuario de tu API no sería el más afortunado hasta que consiga una excepción en la producción. Imaginemos un ejemplo: ¿qué pasa si quisieras extender el método de arreglo nativo de JavaScript para tener un método (`diff`) que pudiera mostrarte la diferencia entre dos arreglos? Podrías escribir una nueva función con `Array.prototype`, pero que esta pudiera interferir con otra librería que intentara hacer lo mismo. ¿Qué ocurre entonces si esa librería simplemente estuviera utilizando `diff` para encontrar la diferencia entre el primero y el último elemento dentro de un arreglo? Es por esto que sería mucho mejor tan solo utilizar clases y extender el `Array`(arreglo) global.
 
-**Bad:**
+**Mal:**
 
 ```ts
 declare global {
@@ -795,86 +796,90 @@ declare global {
     diff(other: T[]): Array<T>;
   }
 }
-
 if (!Array.prototype.diff) {
   Array.prototype.diff = function <T>(other: T[]): T[] {
     const hash = new Set(other);
-    return this.filter(elem => !hash.has(elem));
+    return this.filter((elem) => !hash.has(elem));
   };
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class MyArray<T> extends Array<T> {
   diff(other: T[]): T[] {
     const hash = new Set(other);
-    return this.filter(elem => !hash.has(elem));
-  };
+    return this.filter((elem) => !hash.has(elem));
+  }
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Favor functional programming over imperative programming
+### Favorece a la programación funcional sobre la programación imperativa
 
-Favor this style of programming when you can.
+Favorece este estilo de programación siempre que puedas.
 
-**Bad:**
+**Mal:**
 
 ```ts
 const contributions = [
   {
     name: 'Uncle Bobby',
-    linesOfCode: 500
-  }, {
+    linesOfCode: 500,
+  },
+  {
     name: 'Suzie Q',
-    linesOfCode: 1500
-  }, {
+    linesOfCode: 1500,
+  },
+  {
     name: 'Jimmy Gosling',
-    linesOfCode: 150
-  }, {
+    linesOfCode: 150,
+  },
+  {
     name: 'Gracie Hopper',
-    linesOfCode: 1000
-  }
+    linesOfCode: 1000,
+  },
 ];
-
 let totalOutput = 0;
-
 for (let i = 0; i < contributions.length; i++) {
   totalOutput += contributions[i].linesOfCode;
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 const contributions = [
   {
     name: 'Uncle Bobby',
-    linesOfCode: 500
-  }, {
+    linesOfCode: 500,
+  },
+  {
     name: 'Suzie Q',
-    linesOfCode: 1500
-  }, {
+    linesOfCode: 1500,
+  },
+  {
     name: 'Jimmy Gosling',
-    linesOfCode: 150
-  }, {
+    linesOfCode: 150,
+  },
+  {
     name: 'Gracie Hopper',
-    linesOfCode: 1000
-  }
+    linesOfCode: 1000,
+  },
 ];
-
-const totalOutput = contributions
-  .reduce((totalLines, output) => totalLines + output.linesOfCode, 0);
+const totalOutput = contributions.reduce(
+  (totalLines, output) => totalLines + output.linesOfCode,
+  0,
+);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Encapsulate conditionals
+### Encapsula condicionales
 
-**Bad:**
+**Mal:**
 
 ```ts
 if (subscription.isTrial || account.balance > 0) {
@@ -882,59 +887,55 @@ if (subscription.isTrial || account.balance > 0) {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function canActivateService(subscription: Subscription, account: Account) {
   return subscription.isTrial || account.balance > 0;
 }
-
 if (canActivateService(subscription, account)) {
   // ...
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Avoid negative conditionals
+### Evita condicionales negativas
 
-**Bad:**
+**Mal:**
 
 ```ts
 function isEmailNotUsed(email: string): boolean {
   // ...
 }
-
 if (isEmailNotUsed(email)) {
   // ...
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function isEmailUsed(email: string): boolean {
   // ...
 }
-
-if (!isEmailUsed(email)) {
+if (!isEmailUsed(node)) {
   // ...
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Avoid conditionals
+### Evita las condicionales
 
-This seems like an impossible task. Upon first hearing this, most people say, "how am I supposed to do anything without an `if` statement?" The answer is that you can use polymorphism to achieve the same task in many cases. The second question is usually, "well that's great but why would I want to do that?" The answer is a previous clean code concept we learned: a function should only do one thing. When you have classes and functions that have `if` statements, you are telling your user that your function does more than one thing. Remember, just do one thing.
+Esta parece una tarea imposible. Cuando las personas escuchan esto por primera vez, la mayoría dice, "¿cómo se supone que haga algo sin una declaración `if`?" La respuesta es: puedes utilizar el polimorfismo para lograr la misma tarea en muchos casos. La segunda pregunta es una muy usual, "bueno, eso suena bien, pero, ¿por qué lo haría así?" La respuesta es un concepto del código limpio que ya hemos aprendido anteriormente: las funciones deberían hacer una sola cosa. Cuando tienes clases y funciones que tienen declaraciones `if`, estás expresando que tu función hace más de una cosa. Recuerda, solo una cosa.
 
-**Bad:**
+**Mal:**
 
 ```ts
 class Airplane {
   private type: string;
   // ...
-
   getCruisingAltitude() {
     switch (this.type) {
       case '777':
@@ -947,38 +948,33 @@ class Airplane {
         throw new Error('Unknown airplane type.');
     }
   }
-
   private getMaxAltitude(): number {
     // ...
   }
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 abstract class Airplane {
   protected getMaxAltitude(): number {
     // shared logic with subclasses ...
   }
-
   // ...
 }
-
 class Boeing777 extends Airplane {
   // ...
   getCruisingAltitude() {
     return this.getMaxAltitude() - this.getPassengerCount();
   }
 }
-
 class AirForceOne extends Airplane {
   // ...
   getCruisingAltitude() {
     return this.getMaxAltitude();
   }
 }
-
 class Cessna extends Airplane {
   // ...
   getCruisingAltitude() {
@@ -987,15 +983,12 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Avoid type checking
+### Evita la comprobación del tipo de letra
 
-TypeScript is a strict syntactical superset of JavaScript and adds optional static type checking to the language.
-Always prefer to specify types of variables, parameters and return values to leverage the full power of TypeScript features.
-It makes refactoring more easier.
-
-**Bad:**
+TypeScript es un superconjunto de JavaScript estricto sintácticamente que añade la comprobación del tipo de letra. Siempre es preferible especificar tipos de variables, parámetros y devolver valores para aprovechar la máxima potencia de las funcionalidades de TypeScript. Esto hace que la refactorización sea más simple.
+**Mal:**
 
 ```ts
 function travelToTexas(vehicle: Bicycle | Car) {
@@ -1007,23 +1000,22 @@ function travelToTexas(vehicle: Bicycle | Car) {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 type Vehicle = Bicycle | Car;
-
 function travelToTexas(vehicle: Vehicle) {
   vehicle.move(currentLocation, new Location('texas'));
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Don't over-optimize
+### No sobre-optimices
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of times, if you are optimizing then you are just wasting your time. There are good [resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) for seeing where optimization is lacking. Target those in the meantime, until they are fixed if they can be.
+Los navegadores modernos hacen un montón de optimización por detrás de la pantalla cuando estos se están ejecutando. Muchas veces, cuando estás "optimizando", la realidad es que estás gastando tu tiempo. Hay buenos [recursos](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) para ver dónde falta optimización. Anota estas faltas mientras tanto, al menos hasta que sean arregladas (si es que pueden serlo).
 
-**Bad:**
+**Mal:**
 
 ```ts
 // On old browsers, each iteration with uncached `list.length` would be costly
@@ -1033,7 +1025,7 @@ for (let i = 0, len = list.length; i < len; i++) {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 for (let i = 0; i < list.length; i++) {
@@ -1041,53 +1033,49 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Remove dead code
+### Elimina código que no se use
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in your codebase.
-If it's not being called, get rid of it! It will still be saved in your version history if you still need it.
+El código que no se usa es tan malo como el código duplicado. No hay razón por la que dejar código sin usar en tu archivo.
+Si no está siento llamado, ¡elimínalo! Todavía estará guardado en la historia del control de versiones si aún lo necesitas.
 
-**Bad:**
+**Mal:**
 
 ```ts
 function oldRequestModule(url: string) {
   // ...
 }
-
 function requestModule(url: string) {
   // ...
 }
-
 const req = requestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function requestModule(url: string) {
   // ...
 }
-
 const req = requestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Use iterators and generators
+### Usa iteradores y generadores
 
-Use generators and iterables when working with collections of data used like a stream.  
-There are some good reasons:
+Usa generadores e iterables cuando estés trabajando con conjuntos de datos utilizados como flujo.
+Hay buenas razones para esto:
 
-- decouples the callee from the generator implementation in a sense that callee decides how many
-items to access
-- lazy execution, items are streamed on-demand
-- built-in support for iterating items using the `for-of` syntax
-- iterables allow implementing optimized iterator patterns
+- Separa el "callee" de la implementación del generador para lograr que el "callee" decida a cuantos artículos acceder.
+- Ejecución perezosa. Los artículos son transmitidos cuando se necesiten.
+- Sistema de soporte integrado para iterar artículos utilizando `for-of`.
+- Los iterables permiten implementar patrones de iteradores optimizados.
 
-**Bad:**
+**Mal:**
 
 ```ts
 function fibonacci(n: number): number[] {
@@ -1103,18 +1091,18 @@ function fibonacci(n: number): number[] {
 }
 
 function print(n: number) {
-  fibonacci(n).forEach(fib => console.log(fib));
+  fibonacci(n).forEach((fib) => console.log(fib));
 }
 
-// Print first 10 Fibonacci numbers.
+// Imprime los 10 primeros numeros Fibbonaci
 print(10);
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
-// Generates an infinite stream of Fibonacci numbers.
-// The generator doesn't keep the array of all numbers.
+// Genera un flujo infinito de números Fibonacci
+// El generador no guarda la matriz de todos los números
 function* fibonacci(): IterableIterator<number> {
   let [a, b] = [0, 1];
 
@@ -1126,26 +1114,25 @@ function* fibonacci(): IterableIterator<number> {
 
 function print(n: number) {
   let i = 0;
+
   for (const fib of fibonacci()) {
-    if (i++ === n) break;  
+    if (i++ === n) break;
     console.log(fib);
-  }  
+  }
 }
 
-// Print first 10 Fibonacci numbers.
+// Imprime los 10 primeros numeros Fibbonaci
 print(10);
 ```
 
-There are libraries that allow working with iterables in a similar way as with native arrays, by
-chaining methods like `map`, `slice`, `forEach` etc. See [itiriri](https://www.npmjs.com/package/itiriri) for
-an example of advanced manipulation with iterables (or [itiriri-async](https://www.npmjs.com/package/itiriri-async) for manipulation of async iterables).
+Hay librerías que permiten trabajar con iterables de forma similar a los arreglos nativos al concatenar métodos como `map`, `slice`, `forEach`, etc. Ve [itiriri](https://www.npmjs.com/package/itiriri) para
+un ejemplo de manipulación avanzada con iterables (o [itiriri-async](https://www.npmjs.com/package/itiriri-async) para un ejemplo de manipulación de iterables asyncrono).
 
 ```ts
 import itiriri from 'itiriri';
-
 function* fibonacci(): IterableIterator<number> {
   let [a, b] = [0, 1];
- 
+
   while (true) {
     yield a;
     [a, b] = [b, a + b];
@@ -1154,32 +1141,32 @@ function* fibonacci(): IterableIterator<number> {
 
 itiriri(fibonacci())
   .take(10)
-  .forEach(fib => console.log(fib));
+  .forEach((fib) => console.log(fib));
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-## Objects and Data Structures
+## Objetos y estructura de datos
 
-### Use getters and setters
+### Usa "getters" y "setters"
 
-TypeScript supports getter/setter syntax.
-Using getters and setters to access data from objects that encapsulate behavior could be better than simply looking for a property on an object.
-"Why?" you might ask. Well, here's a list of reasons:
+TypeScript soporta la sintaxis getter/setter.
+Utilizar getters y setters para acceder a datos desde objetos que encapsulan el comportamiento podría ser mejor que simplemente buscar una propiedad de un objeto.
+"¿Por qué?" preguntarás. Bueno, aquí hay una lista de razones:
 
-- When you want to do more beyond getting an object property, you don't have to look up and change every accessor in your codebase.
-- Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a server.
+- Cuando quieres hacer más que obtener la propiedad de un objeto, no tienes que cambiar cada acesor en el código de tu archivo.
+- Valida de una manera simple utilizando `set`.
+- Encapsula la representación interna.
+- Fácil de añadir un registro y manejo de errores.
+- Puedes cargar lentamente las propiedades de tus objetos, como por ejemplo, cargándolas desde un servidor.
 
-**Bad:**
+**Mal:**
 
 ```ts
 type BankAccount = {
   balance: number;
   // ...
-}
+};
 
 const value = 100;
 const account: BankAccount = {
@@ -1194,7 +1181,7 @@ if (value < 0) {
 account.balance = value;
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class BankAccount {
@@ -1208,33 +1195,32 @@ class BankAccount {
     if (value < 0) {
       throw new Error('Cannot set negative balance.');
     }
-
     this.accountBalance = value;
   }
 
   // ...
 }
 
-// Now `BankAccount` encapsulates the validation logic.
-// If one day the specifications change, and we need extra validation rule,
-// we would have to alter only the `setter` implementation,
-// leaving all dependent code unchanged.
+// Ahora `BankAccount` encapsula la lógica de validación.
+// Si un día las especificaciones cambian, y necesitamos una regla de validación extra,
+// tendríamos que alterar sólo la implementación de `setter`,
+// dejando todo el código dependiente sin cambios.
 const account = new BankAccount();
 account.balance = 100;
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Make objects have private/protected members
+### Haz que los objetos tengan miembros privados o protegidos
 
-TypeScript supports `public` *(default)*, `protected` and `private` accessors on class members.  
+TypeScript soporta los acesores `public` _(por defecto)_, `protected` y `private` en los miembros de la clase.
 
-**Bad:**
+**Mal:**
 
 ```ts
 class Circle {
   radius: number;
-  
+
   constructor(radius: number) {
     this.radius = radius;
   }
@@ -1249,12 +1235,11 @@ class Circle {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class Circle {
-  constructor(private readonly radius: number) {
-  }
+  constructor(private readonly radius: number) {}
 
   perimeter() {
     return 2 * Math.PI * this.radius;
@@ -1266,14 +1251,13 @@ class Circle {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Prefer immutability
+### Es preferible la inmutabilidad
 
-TypeScript's type system allows you to mark individual properties on an interface/class as *readonly*. This allows you to work in a functional way (an unexpected mutation is bad).  
-For more advanced scenarios there is a built-in type `Readonly` that takes a type `T` and marks all of its properties as readonly using mapped types (see [mapped types](https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types)).
-
-**Bad:**
+El sistema de tipo de TypeScript te permite marcar propiedades individuales en un interfaz/clase como _readonly_. Esto te permite trabajar de una manera funcional (la mutación inesperada es mala).
+Para escenarios más avanzados hay un tipo de `Readonly` integrado que toma el tipo `T` y marca todas sus propiedades como "readonly" utilizando el mapeado de tipos (ve [mapped types](https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types)).
+**Mal:**
 
 ```ts
 interface Config {
@@ -1283,7 +1267,7 @@ interface Config {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 interface Config {
@@ -1293,26 +1277,26 @@ interface Config {
 }
 ```
 
-For arrays, you can create a read-only array by using `ReadonlyArray<T>`.
-It doesn't allow changes such as `push()` and `fill()`, but can use features such as `concat()` and `slice()` that do not change the array's value.
+En caso de un arreglo, puedes crear un arreglo "read-only" utilizando `ReadonlyArray<T>`.
+No permitas cambios como `push()` y `fill()`, puedes usar funciones como `concat()` y `slice()` ya que estas no cambian el valor.
 
-**Bad:**
+**Mal:**
 
 ```ts
-const array: number[] = [ 1, 3, 5 ];
+const array: number[] = [1, 3, 5];
 array = []; // error
-array.push(100); // array will be updated
+array.push(100); // el arreglo cambiara
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
-const array: ReadonlyArray<number> = [ 1, 3, 5 ];
+const array: ReadonlyArray<number> = [1, 3, 5];
 array = []; // error
 array.push(100); // error
 ```
 
-Declaring read-only arguments in [TypeScript 3.4 is a bit easier](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#improvements-for-readonlyarray-and-readonly-tuples).
+Declarar argumentos "read-only" en [TypeScript 3.4 es un poco más fácil](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#improvements-for-readonlyarray-and-readonly-tuples).
 
 ```ts
 function hoge(args: readonly string[]) {
@@ -1320,42 +1304,42 @@ function hoge(args: readonly string[]) {
 }
 ```
 
-Prefer [const assertions](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#const-assertions) for literal values.
+Son preferibles las [const assertions](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#const-assertions) para valores literales.
 
-**Bad:**
+**Mal:**
 
 ```ts
 const config = {
-  hello: 'world'
+  hello: 'world',
 };
-config.hello = 'world'; // value is changed
+config.hello = 'world'; // valor cambiado
 
-const array  = [ 1, 3, 5 ];
+const array = [1, 3, 5];
 array[0] = 10; // value is changed
 
-// writable objects is returned
+// se devuelven los objetos con permisos de escritura
 function readonlyData(value: number) {
   return { value };
 }
 
 const result = readonlyData(100);
-result.value = 200; // value is changed
+result.value = 200; // valor cambiado
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
-// read-only object
+// objeto de solo lectura
 const config = {
-  hello: 'world'
+  hello: 'world',
 } as const;
 config.hello = 'world'; // error
 
 // read-only array
-const array  = [ 1, 3, 5 ] as const;
+const array = [1, 3, 5] as const;
 array[0] = 10; // error
 
-// You can return read-only objects
+// Puede devolver objetos de solo lectura
 function readonlyData(value: number) {
   return { value } as const;
 }
@@ -1364,14 +1348,14 @@ const result = readonlyData(100);
 result.value = 200; // error
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### type vs. interface
+### Tipo vs. interfaz
 
-Use type when you might need a union or intersection. Use an interface when you want `extends` or `implements`. There is no strict rule, however, use the one that works for you.  
-For a more detailed explanation refer to this [answer](https://stackoverflow.com/questions/37233735/typescript-interfaces-vs-types/54101543#54101543) about the differences between `type` and `interface` in TypeScript.
+Usa tipo cuando necesites una unión o intersección. Usa interfaz cuando necesites `extends` o `implements`. No hay ninguna regla estricta, usa la que te funcione mejor.
+Para una explicación más detallada referente a esta [respuesta](https://stackoverflow.com/questions/37233735/typescript-interfaces-vs-types/54101543#54101543) sobre las diferencias entre `type` e `interface` en TypeScript.
 
-**Bad:**
+**Mal:**
 
 ```ts
 interface EmailConfig {
@@ -1387,25 +1371,23 @@ interface Config {
 }
 
 //...
-
 type Shape = {
   // ...
-}
+};
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
-
 type EmailConfig = {
   // ...
-}
+};
 
 type DbConfig = {
   // ...
-}
+};
 
-type Config  = EmailConfig | DbConfig;
+type Config = EmailConfig | DbConfig;
 
 // ...
 
@@ -1422,73 +1404,103 @@ class Square implements Shape {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-## Classes
+## Clases
 
-### Classes should be small
+### Las clases deberían ser pequeñas
 
-The class' size is measured by its responsibility. Following the *Single Responsibility principle* a class should be small.
+El tamaño de la clase es medido por su responsabilidad. Siguiendo el _Principio de responsabilidad única_, una clase debería ser pequeña.
 
-**Bad:**
+**Mal:**
 
 ```ts
 class Dashboard {
-  getLanguage(): string { /* ... */ }
-  setLanguage(language: string): void { /* ... */ }
-  showProgress(): void { /* ... */ }
-  hideProgress(): void { /* ... */ }
-  isDirty(): boolean { /* ... */ }
-  disable(): void { /* ... */ }
-  enable(): void { /* ... */ }
-  addSubscription(subscription: Subscription): void { /* ... */ }
-  removeSubscription(subscription: Subscription): void { /* ... */ }
-  addUser(user: User): void { /* ... */ }
-  removeUser(user: User): void { /* ... */ }
-  goToHomePage(): void { /* ... */ }
-  updateProfile(details: UserDetails): void { /* ... */ }
-  getVersion(): string { /* ... */ }
+  getLanguage(): string {
+    /* ... */
+  }
+  setLanguage(language: string): void {
+    /* ... */
+  }
+  showProgress(): void {
+    /* ... */
+  }
+  hideProgress(): void {
+    /* ... */
+  }
+  isDirty(): boolean {
+    /* ... */
+  }
+  disable(): void {
+    /* ... */
+  }
+  enable(): void {
+    /* ... */
+  }
+  addSubscription(subscription: Subscription): void {
+    /* ... */
+  }
+  removeSubscription(subscription: Subscription): void {
+    /* ... */
+  }
+  addUser(user: User): void {
+    /* ... */
+  }
+  removeUser(user: User): void {
+    /* ... */
+  }
+  goToHomePage(): void {
+    /* ... */
+  }
+  updateProfile(details: UserDetails): void {
+    /* ... */
+  }
+  getVersion(): string {
+    /* ... */
+  }
   // ...
 }
-
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class Dashboard {
-  disable(): void { /* ... */ }
-  enable(): void { /* ... */ }
-  getVersion(): string { /* ... */ }
+  disable(): void {
+    /* ... */
+  }
+  enable(): void {
+    /* ... */
+  }
+  getVersion(): string {
+    /* ... */
+  }
 }
+// dividir las responsabilidades trasladando los métodos restantes a otras clases
 
-// split the responsibilities by moving the remaining methods to other classes
 // ...
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### High cohesion and low coupling
+### Alta cohesión y bajo acoplamiento
 
-Cohesion defines the degree to which class members are related to each other. Ideally, all fields within a class should be used by each method.
-We then say that the class is *maximally cohesive*. In practice, this, however, is not always possible, nor even advisable. You should however prefer cohesion to be high.  
-
-Coupling refers to how related or dependent are two classes toward each other. Classes are said to be low coupled if changes in one of them don't affect the other one.  
-  
-Good software design has **high cohesion** and **low coupling**.
-
-**Bad:**
+La cohesión define el grado en el que los miembros de la clase están relacionados los unos con los otros. Idealmente, todos los campos entre una clase deberían ser utilizados por cada método.
+Decimos entonces que la clase es _masivamente cohesiva_. Sin embargo, en la práctica, esto no es siempre posible, ni siquiera es aconsejable. Aún así, es preferible que la cohesión sea alta.
+El acoplamiento se refiere a cómo se relacionan o dependen dos clases entre sí. Se dice que las clases están en bajo acoplamiento si los cambios en una de ellas no afecta a la otra.
+Un buen diseño de software tiene **alta cohesión** y **bajo acoplamiento**.
+**Mal:**
 
 ```ts
 class UserManager {
-  // Bad: each private variable is used by one or another group of methods.
-  // It makes clear evidence that the class is holding more than a single responsibility.
-  // If I need only to create the service to get the transactions for a user,
-  // I'm still forced to pass and instance of `emailSender`.
+  // Malo: cada variable privada es utilizada por uno u otro grupo de métodos.
+  // Evidencia claramente que la clase tiene más de una responsabilidad.
+  // Si sólo necesito crear el servicio para obtener las transacciones de un usuario,
+  // todavía estoy obligado a pasar una instancia de `emailSender`.
   constructor(
     private readonly db: Database,
-    private readonly emailSender: EmailSender) {
-  }
+    private readonly emailSender: EmailSender,
+  ) {}
 
   async getUser(id: number): Promise<User> {
     return await db.users.findOne({ id });
@@ -1512,12 +1524,11 @@ class UserManager {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class UserService {
-  constructor(private readonly db: Database) {
-  }
+  constructor(private readonly db: Database) {}
 
   async getUser(id: number): Promise<User> {
     return await this.db.users.findOne({ id });
@@ -1527,10 +1538,8 @@ class UserService {
     return await this.db.transactions.find({ userId });
   }
 }
-
 class UserNotifier {
-  constructor(private readonly emailSender: EmailSender) {
-  }
+  constructor(private readonly emailSender: EmailSender) {}
 
   async sendGreeting(): Promise<void> {
     await this.emailSender.send('Welcome!');
@@ -1546,39 +1555,32 @@ class UserNotifier {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Prefer composition over inheritance
+### Es más preferible la composición que la herencia
 
-As stated famously in [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four, you should *prefer composition over inheritance* where you can. There are lots of good reasons to use inheritance and lots of good reasons to use composition. The main point for this maxim is that if your mind instinctively goes for inheritance, try to think if composition could model your problem better. In some cases it can.  
-  
-You might be wondering then, "when should I use inheritance?" It depends on your problem at hand, but this is a decent list of when inheritance makes more sense than composition:
+Como está estipulado en [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) por "Gang of Four", _deberías preferir la composición sobre la herencia_ siempre que puedas. Hay muchas buenas razones para usar la herencia al igual que hay muchas buenas razones para usar la composición. El punto principal es que si tu mente instintivamente decide ir por la herencia, trata de pensar como si la composición pudiera solucionar mejor el problema. En algunos casos es así.
+Debes de preguntarte, "¿cuando debería utilizar la herencia?" Depende del problema, pero aquí hay una decente lista donde puedes ver cuando la herencia tiene más sentido que la composición:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a" relationship (Human->Animal vs. User->UserDetails).
+1. Tu herencia representa una relación (es) y no una relación (tiene) (Humano->Animal vs. Usuario->DetallesDelUsuario).
+2. Puedes reusar el código desde la base de las clases (Los humanos pueden moverse como todos los animales).
+3. Quieres hacer cambios globales a clases derivadas cambiando la base de la clase (Cambia el gasto calórico de todos los animales cuando se mueven).
 
-2. You can reuse code from the base classes (Humans can move like all animals).
-
-3. You want to make global changes to derived classes by changing a base class. (Change the caloric expenditure of all animals when they move).
-
-**Bad:**
+**Mal:**
 
 ```ts
 class Employee {
-  constructor(
-    private readonly name: string,
-    private readonly email: string) {
-  }
-
+  constructor(private readonly name: string, private readonly email: string) {}
   // ...
 }
-
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Malo porque los Empleados "tienen" datos fiscales. EmployeeTaxData no es un tipo de Empleado
 class EmployeeTaxData extends Employee {
   constructor(
     name: string,
     email: string,
     private readonly ssn: string,
-    private readonly salary: number) {
+    private readonly salary: number,
+  ) {
     super(name, email);
   }
 
@@ -1586,42 +1588,30 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class Employee {
   private taxData: EmployeeTaxData;
-
-  constructor(
-    private readonly name: string,
-    private readonly email: string) {
-  }
-
+  constructor(private readonly name: string, private readonly email: string) {}
   setTaxData(ssn: string, salary: number): Employee {
     this.taxData = new EmployeeTaxData(ssn, salary);
     return this;
   }
-
   // ...
 }
-
 class EmployeeTaxData {
-  constructor(
-    public readonly ssn: string,
-    public readonly salary: number) {
-  }
-
+  constructor(public readonly ssn: string, public readonly salary: number) {}
   // ...
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Use method chaining
+### Usa el método de encadenamiento
 
-This pattern is very useful and commonly used in many libraries. It allows your code to be expressive, and less verbose. For that reason, use method chaining and take a look at how clean your code will be.
-
-**Bad:**
+Este patrón es muy útil y muy usado en muchas librerías. Permite que tu código sea expresivo y menos ampuloso. Por esa razón, usa el método de encadenamiento y observa que limpio será tu código.
+**Mal:**
 
 ```ts
 class QueryBuilder {
@@ -1658,7 +1648,7 @@ queryBuilder.orderBy('firstName', 'lastName');
 const query = queryBuilder.build();
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class QueryBuilder {
@@ -1697,45 +1687,40 @@ const query = new QueryBuilder()
   .build();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-## SOLID
+## Principios SOLID
 
-### Single Responsibility Principle (SRP)
+### Principio de responsabilidad único (Single Responsibility Principle (SRP))
 
-As stated in Clean Code, "There should never be more than one reason for a class to change". It's tempting to jam-pack a class with a lot of functionality, like when you can only take one suitcase on your flight. The issue with this is that your class won't be conceptually cohesive and it will give it many reasons to change. Minimizing the amount of time you need to change a class is important. It's important because if too much functionality is in one class and you modify a piece of it, it can be difficult to understand how that will affect other dependent modules in your codebase.
+Como se declara en el código limpio, "Nunca debe haber más de una razón para cambiar una clase". Es tentador llenar una clase con muchas funcionalidades, como cuando solo puedes llevar una maleta en tu vuelo. El problema con esto es que tu clase no será conceptualmente cohesiva y habrán muchas razones para cambiarla. Minimizar la cantidad de veces que necesitas cambiar una clase es importante. Es importante ya que si hay muchas funcionalidades en una clase y modificas una parte de ella, puede ser difícil de entender cómo afectará a otros módulos dependientes en tu código.
 
-**Bad:**
+**Mal:**
 
 ```ts
 class UserSettings {
-  constructor(private readonly user: User) {
-  }
-
+  constructor(private readonly user: User) {}
   changeSettings(settings: UserSettings) {
     if (this.verifyCredentials()) {
       // ...
     }
   }
-
   verifyCredentials() {
     // ...
   }
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class UserAuth {
-  constructor(private readonly user: User) {
-  }
+  constructor(private readonly user: User) {}
 
   verifyCredentials() {
     // ...
   }
 }
-
 
 class UserSettings {
   private readonly auth: UserAuth;
@@ -1752,42 +1737,36 @@ class UserSettings {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Open/Closed Principle (OCP)
+### Principio abierto/cerrado (Open/Closed Principle (OCP))
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification." What does that mean though? This principle basically states that you should allow users to add new functionalities without changing existing code.
-
-**Bad:**
+Como lo declara Bertrand Meyer, "las entidades del software (clases, módulos, funciones, etc.) deberían estar abiertas para su extensión, pero cerradas a modificación". Pero, ¿qué quiere decir esa oración? Este principio básicamente declara que deberías permitir a los usuarios que añadan nuevas funcionalidades sin cambiar código existente.
+**Mal:**
 
 ```ts
 class AjaxAdapter extends Adapter {
   constructor() {
     super();
   }
-
   // ...
 }
-
 class NodeAdapter extends Adapter {
   constructor() {
     super();
   }
-
   // ...
 }
-
 class HttpRequester {
-  constructor(private readonly adapter: Adapter) {
-  }
+  constructor(private readonly adapter: Adapter) {}
 
   async fetch<T>(url: string): Promise<T> {
     if (this.adapter instanceof AjaxAdapter) {
       const response = await makeAjaxCall<T>(url);
-      // transform response and return
+      // transforma la respuesta y la retorna
     } else if (this.adapter instanceof NodeAdapter) {
       const response = await makeHttpCall<T>(url);
-      // transform response and return
+      // transforma la respuesta y la retorna
     }
   }
 }
@@ -1801,24 +1780,21 @@ function makeHttpCall<T>(url: string): Promise<T> {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 abstract class Adapter {
   abstract async request<T>(url: string): Promise<T>;
-
-  // code shared to subclasses ...
+  // codigo compartido a las subclases...
 }
-
 class AjaxAdapter extends Adapter {
   constructor() {
     super();
   }
 
-  async request<T>(url: string): Promise<T>{
-    // request and return promise
+  async request<T>(url: string): Promise<T> {
+    // solicita y retorna la promesa
   }
-
   // ...
 }
 
@@ -1827,41 +1803,34 @@ class NodeAdapter extends Adapter {
     super();
   }
 
-  async request<T>(url: string): Promise<T>{
-    // request and return promise
+  async request<T>(url: string): Promise<T> {
+    // solicita y retorna la promesa
   }
-
   // ...
 }
 
 class HttpRequester {
-  constructor(private readonly adapter: Adapter) {
-  }
+  constructor(private readonly adapter: Adapter) {}
 
   async fetch<T>(url: string): Promise<T> {
     const response = await this.adapter.request<T>(url);
-    // transform response and return
+    // transforma la respuesta y la retorna
   }
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Liskov Substitution Principle (LSP)
+### Principio de sustitución Liskov (Liskov Substitution Principle (LSP))
 
-This is a scary term for a very simple concept. It's formally defined as "If S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e., objects of type S may substitute objects of type T) without altering any of the desirable properties of that program (correctness, task performed, etc.)." That's an even scarier definition.  
-  
-The best explanation for this is if you have a parent class and a child class, then the parent class and child class can be used interchangeably without getting incorrect results. This might still be confusing, so let's take a look at the classic Square-Rectangle example. Mathematically, a square is a rectangle, but if you model it using the "is-a" relationship via inheritance, you quickly get into trouble.
+Este es un término muy temido por un simple concepto. Está formalmente definido como "Si S es un subtipo de T, entonces los objetos de tipo T podrían ser reemplazados por objetos de tipo S (ej.: objetos de tipo S podrías sustituir objetos de tipo T) sin alterar ninguna propiedad deseada del programa (la correción, la tarea realizada, etc.)." Esa es una definición aún más aterradora.
+La mejor explicación para esto es que si tienes una clase padre y una clase hijo, la clase padre y la clase hijo pueden ser usadas indistintamente sin obtener resultados incorrectos. Esto aún puede ser confuso, así que veamos el clásico ejemplo del Cuadrado-Rectpangulo (Square-Rectangle). Matemáticamente, un cuadrado es un rectángulo, pero si lo modelas usando la relación "es" a través de la herencia, rápidamente te encontrarás con problemas.
 
-**Bad:**
+**Mal:**
 
 ```ts
 class Rectangle {
-  constructor(
-    protected width: number = 0,
-    protected height: number = 0) {
-
-  }
+  constructor(protected width: number = 0, protected height: number = 0) {}
 
   setColor(color: string): this {
     // ...
@@ -1902,10 +1871,7 @@ class Square extends Rectangle {
 
 function renderLargeRectangles(rectangles: Rectangle[]) {
   rectangles.forEach((rectangle) => {
-    const area = rectangle
-      .setWidth(4)
-      .setHeight(5)
-      .getArea(); // BAD: Returns 25 for Square. Should be 20.
+    const area = rectangle.setWidth(4).setHeight(5).getArea(); // BAD: Returns 25 for Square. Should be 20.
     rectangle.render(area);
   });
 }
@@ -1914,7 +1880,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 abstract class Shape {
@@ -1930,9 +1896,7 @@ abstract class Shape {
 }
 
 class Rectangle extends Shape {
-  constructor(
-    private readonly width = 0,
-    private readonly height = 0) {
+  constructor(private readonly width = 0, private readonly height = 0) {
     super();
   }
 
@@ -1962,14 +1926,14 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Interface Segregation Principle (ISP)
+### Principio de segregación de interfaz (Interface Segregation Principle (ISP))
 
-ISP states that "Clients should not be forced to depend upon interfaces that they do not use.". This principle is very much related to the Single Responsibility Principle.
-What it really means is that you should always design your abstractions in a way that the clients that are using the exposed methods do not get the whole pie instead. That also include imposing the clients with the burden of implementing methods that they don’t actually need.
+El ISP declara que "Los clientes no deben ser forzados a depender de interfaces que ellos no utilizan.". Este principio se relaciona mucho con el Principio de responsabilidad único.
+Lo que quiere decir en realidad es que deberías siempre diseñar tus abstracciones de manera que los clientes que estén utilizando los métodos expuestos no estén recibiendo el pie completo. Esto también incluye imponer a los clientes la carga de implementar métodos que ellos no necesitan realmente.
 
-**Bad:**
+**Mal:**
 
 ```ts
 interface SmartPrinter {
@@ -1977,12 +1941,11 @@ interface SmartPrinter {
   fax();
   scan();
 }
-
 class AllInOnePrinter implements SmartPrinter {
   print() {
     // ...
-  }  
-  
+  }
+
   fax() {
     // ...
   }
@@ -1995,8 +1958,8 @@ class AllInOnePrinter implements SmartPrinter {
 class EconomicPrinter implements SmartPrinter {
   print() {
     // ...
-  }  
-  
+  }
+
   fax() {
     throw new Error('Fax not supported.');
   }
@@ -2007,7 +1970,7 @@ class EconomicPrinter implements SmartPrinter {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 interface Printer {
@@ -2025,8 +1988,8 @@ interface Scanner {
 class AllInOnePrinter implements Printer, Fax, Scanner {
   print() {
     // ...
-  }  
-  
+  }
+
   fax() {
     // ...
   }
@@ -2043,21 +2006,18 @@ class EconomicPrinter implements Printer {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Dependency Inversion Principle (DIP)
+### Principio de inversión dependiente (Dependency Inversion Principle (DIP))
 
-This principle states two essential things:
+Este principio declara dos cosas escenciales:
 
-1. High-level modules should not depend on low-level modules. Both should depend on abstractions.
+1. Los módulos de alto nivel no deberían depender de módulos de bajo nivel. Ambos deberían depender de las abstracciones.
+2. Las abstracciones no deberían depender de los detalles. Los detalles deberían depender de las abstracciones.
+   Esto puede ser difícil de entender al principio, pero si has trabajado con Angular, has visto la implementación de este principio en la forma de Inyección dependiente (Dependency Injection (DI)). Aunque estos no son los mismos conceptos, el DIP mantiene módulos de alto nivel que conocen los detalles de sus módulos de bajo nivel y los configura. Se puede lograr esto a través de una DI. Un gran beneficio de esto es que reduce el emparejamiento entre módulos. El emparejamiento es un muy mal patrón de desarrollo ya que hace a tu código más difícil de refactorizar.
+   El DIP se logra usualmente mediante el uso de un contenedor de inversión de control (IoC). Un ejemplo de un IoC muy poderoso para TypeScript es [InversifyJs](https://www.npmjs.com/package/inversify).
 
-2. Abstractions should not depend upon details. Details should depend on abstractions.
-
-This can be hard to understand at first, but if you've worked with Angular, you've seen an implementation of this principle in the form of Dependency Injection (DI). While they are not identical concepts, DIP keeps high-level modules from knowing the details of its low-level modules and setting them up. It can accomplish this through DI. A huge benefit of this is that it reduces the coupling between modules. Coupling is a very bad development pattern because it makes your code hard to refactor.  
-  
-DIP is usually achieved by a using an inversion of control (IoC) container. An example of a powerful IoC container for TypeScript is [InversifyJs](https://www.npmjs.com/package/inversify)
-
-**Bad:**
+**Mal:**
 
 ```ts
 import { readFile as readFileCb } from 'fs';
@@ -2067,18 +2027,17 @@ const readFile = promisify(readFileCb);
 
 type ReportData = {
   // ..
-}
+};
 
 class XmlFormatter {
   parse<T>(content: string): T {
-    // Converts an XML string to an object T
+    // Convierte una cadena XML a un objeto de tipo T
   }
 }
 
 class ReportReader {
-
-  // BAD: We have created a dependency on a specific request implementation.
-  // We should just have ReportReader depend on a parse method: `parse`
+  // MAL: Hemos creado una dependencia en una implementación de petición específica.
+  // Deberíamos hacer que ReportReader dependa de un método parse: `parse`.
   private readonly formatter = new XmlFormatter();
 
   async read(path: string): Promise<ReportData> {
@@ -2092,7 +2051,7 @@ const reader = new ReportReader();
 const report = await reader.read('report.xml');
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 import { readFile as readFileCb } from 'fs';
@@ -2102,7 +2061,7 @@ const readFile = promisify(readFileCb);
 
 type ReportData = {
   // ..
-}
+};
 
 interface Formatter {
   parse<T>(content: string): T;
@@ -2110,20 +2069,18 @@ interface Formatter {
 
 class XmlFormatter implements Formatter {
   parse<T>(content: string): T {
-    // Converts an XML string to an object T
+    // Convierte una cadena XML a un objeto de tipo T
   }
 }
 
-
 class JsonFormatter implements Formatter {
   parse<T>(content: string): T {
-    // Converts a JSON string to an object T
+    // Convierte una cadena XML a un objeto de tipo T
   }
 }
 
 class ReportReader {
-  constructor(private readonly formatter: Formatter) {
-  }
+  constructor(private readonly formatter: Formatter) {}
 
   async read(path: string): Promise<ReportData> {
     const text = await readFile(path, 'UTF8');
@@ -2140,51 +2097,44 @@ const reader = new ReportReader(new JsonFormatter());
 const report = await reader.read('report.json');
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-## Testing
+## Pruebas
 
-Testing is more important than shipping. If you have no tests or an inadequate amount, then every time you ship code you won't be sure that you didn't break anything.
-Deciding on what constitutes an adequate amount is up to your team, but having 100% coverage (all statements and branches)
-is how you achieve very high confidence and developer peace of mind. This means that in addition to having a great testing framework, you also need to use a good [coverage tool](https://github.com/gotwarlost/istanbul).
+Las pruebas son más importantes que el envío. Si no tienes pruebas o una cantidad inadecuada, cada vez que envies código no estarás seguro que no rompiste nada.
+Decidir lo que constituye una cantidad adecuada depende de tu equipo, pero tener el 100% de cobertura (todas las declaraciones y las ramas)
+es como se logra una muy alta confianza y la paz mental del desarrollador. Esto significa que, aparte de tener un buen framework de pruebas, también necesitas usar una buena [herramienta de cobertura](https://github.com/gotwarlost/istanbul).
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](http://jstherightway.org/#testing-tools) with typings support for TypeScript, so find one that your team prefers. When you find one that works for your team, then aim to always write tests for every new feature/module you introduce. If your preferred method is Test Driven Development (TDD), that is great, but the main point is to just make sure you are reaching your coverage goals before launching any feature, or refactoring an existing one.  
+No hay excusa para no escribir pruebas. Hay muchos [frameworks de pruebas con JS](http://jstherightway.org/#testing-tools) con soporte para TypeScript, así que encuentra uno que a tu equipo le guste. Cuando encuentres uno que funcione para tu equipo, escribe pruebas para cada mejora/módulo nuevo que introducen. Si tu método preferido es el Desarrollo de pruebas controlado (Test Driven Development (TDD)), eso está bien, pero el punto principal es asegurarte que cubras tus metas antes de publicar una mejora o de refactorizar una existente.
 
-### The three laws of TDD
+### Las tres leyes del TDD
 
-1. You are not allowed to write any production code unless it is to make a failing unit test pass.
+1. No puedes escribir ningún código de producción a menos que sea para aprobar la prueba de una unidad.
+2. No puedes escribir más de una unidad de prueba hasta que sea suficiente para que falle; los fallos de compilación siguen siendo fallos.
+3. No puedes escribir más código de producción de lo que es suficiente para pasar una prueba única de unidad que esté fallando.
 
-2. You are not allowed to write any more of a unit test than is sufficient to fail, and; compilation failures are failures.
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-3. You are not allowed to write any more production code than is sufficient to pass the one failing unit test.
+### Reglas F.I.R.S.T. (R.I.R.A.O en español)
 
-**[⬆ back to top](#table-of-contents)**
+El código limpio debe seguir las reglas:
 
-### F.I.R.S.T. rules
+- **Fast (Rápido)**. Las pruebas rápidas deberían ser rápidas porque queremos ejecutarlas frecuentemente.
+- **Independent (Independiente)**. Las pruebas independientes no deberían depender unas de las otras. Ellas deberían proporcionar el mismo resultado independientemente de si se ejecutan todas juntas en cualquier orden.
+- **Repeatable (Repetitivo)**. Las pruebas deberían ser repetitivas en cualquier entorno y no debería haber ninguna excusa para fallar.
+- **Self-Validating (Autovalidación)**. Autovalidar una prueba debería ser respondida con _Pasada_ o _Fallida_. No necesitas comparar los archivos de registro para saber si una prueba fue pasada.
+- **Timely (Oportuno)**. Las pruebas oportunas deberían ser esritas antes del código de producción. Si escribes las pruebas antes del código de producción, tal vez te encuentres con que escribir las pruebas será muy difícil.
 
-Clean tests should follow the rules:
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-- **Fast** tests should be fast because we want to run them frequently.
+### Un solo concepto por prueba
 
-- **Independent** tests should not depend on each other. They should provide same output whether run independently or all together in any order.
+Las pruebas también deben seguir el Principio de responsabilidad único. Realiza solo un acierto por prueba.
 
-- **Repeatable** tests should be repeatable in any environment and there should be no excuse for why they fail.
-
-- **Self-Validating** a test should answer with either *Passed* or *Failed*. You don't need to compare log files to answer if a test passed.
-
-- **Timely** unit tests should be written before the production code. If you write tests after the production code, you might find writing tests too hard.
-
-**[⬆ back to top](#table-of-contents)**
-
-### Single concept per test
-
-Tests should also follow the *Single Responsibility Principle*. Make only one assert per unit test.
-
-**Bad:**
+**Mal:**
 
 ```ts
 import { assert } from 'chai';
-
 describe('AwesomeDate', () => {
   it('handles date boundaries', () => {
     let date: AwesomeDate;
@@ -2201,11 +2151,10 @@ describe('AwesomeDate', () => {
 });
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 import { assert } from 'chai';
-
 describe('AwesomeDate', () => {
   it('handles 30-day months', () => {
     const date = new AwesomeDate('1/1/2015');
@@ -2224,13 +2173,13 @@ describe('AwesomeDate', () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### The name of the test should reveal its intention
+### El nombre de la prueba debe revelar cual es su intención
 
-When a test fails, its name is the first indication of what may have gone wrong.
+Cuando una prueba falla, su nombre es la primera indicación de qué puede haber salido mal.
 
-**Bad:**
+**Mal:**
 
 ```ts
 describe('Calendar', () => {
@@ -2244,7 +2193,7 @@ describe('Calendar', () => {
 });
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 describe('Calendar', () => {
@@ -2258,23 +2207,27 @@ describe('Calendar', () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-## Concurrency
+## Concurrencia
 
-### Prefer promises vs callbacks
+### Son preferibles las promesas a las "callbacks"
 
-Callbacks aren't clean, and they cause excessive amounts of nesting *(the callback hell)*.  
-There are utilities that transform existing functions using the callback style to a version that returns promises
-(for Node.js see [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original), for general purpose see [pify](https://www.npmjs.com/package/pify), [es6-promisify](https://www.npmjs.com/package/es6-promisify))
+Las "Callbacks" no son limpias, y, pueden causar anidación excesiva _(el infierno de las "Callbacks")_.
+Hay utilidades que transforman funciones existentes utilizando el estilo callback a una versión que retorna promesas
+(para Node.js ve [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original), para propósitos generales ve [pify](https://www.npmjs.com/package/pify), [es6-promisify](https://www.npmjs.com/package/es6-promisify))
 
-**Bad:**
+**Mal:**
 
 ```ts
 import { get } from 'request';
 import { writeFile } from 'fs';
 
-function downloadPage(url: string, saveTo: string, callback: (error: Error, content?: string) => void) {
+function downloadPage(
+  url: string,
+  saveTo: string,
+  callback: (error: Error, content?: string) => void,
+) {
   get(url, (error, response) => {
     if (error) {
       callback(error);
@@ -2290,16 +2243,20 @@ function downloadPage(url: string, saveTo: string, callback: (error: Error, cont
   });
 }
 
-downloadPage('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', 'article.html', (error, content) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log(content);
-  }
-});
+downloadPage(
+  'https://en.wikipedia.org/wiki/Robert_Cecil_Martin',
+  'article.html',
+  (error, content) => {
+    if (error) {
+      console.error(error);
+    } else {
+      console.log(content);
+    }
+  },
+);
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 import { get } from 'request';
@@ -2309,33 +2266,34 @@ import { promisify } from 'util';
 const write = promisify(writeFile);
 
 function downloadPage(url: string, saveTo: string): Promise<string> {
-  return get(url)
-    .then(response => write(saveTo, response));
+  return get(url).then((response) => write(saveTo, response));
 }
 
-downloadPage('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', 'article.html')
-  .then(content => console.log(content))
-  .catch(error => console.error(error));  
+downloadPage(
+  'https://en.wikipedia.org/wiki/Robert_Cecil_Martin',
+  'article.html',
+)
+  .then((content) => console.log(content))
+  .catch((error) => console.error(error));
 ```
 
-Promises supports a few helper methods that help make code more concise:  
+Las promesas soportan algunos métodos de utilidad para hacer tu código más conciso:
+| Patrón | Descripción |
+| ------------------------ | ----------------------------------------- |
+| `Promise.resolve(value)` | Convertir un valor en una promesa resuelta. |
+| `Promise.reject(error)` | Convertir un error en una promesa rechazada. |
+| `Promise.all(promises)` | Devuelve una nueva promesa la cual está compuesta por un arreglo de valores por las promesas pasadas o rechazadas con la razón de la primera promesa que rechaza. |
+| `Promise.race(promises)` | Devuelve una nueva promesa la cual es llenada/rechazada con el resultado/error de la primera promesa establecida del arreglo de promesas pasadas. |
 
-| Pattern                  | Description                                |  
-| ------------------------ | -----------------------------------------  |  
-| `Promise.resolve(value)` | Convert a value into a resolved promise.   |  
-| `Promise.reject(error)`  | Convert an error into a rejected promise.  |  
-| `Promise.all(promises)`  | Returns a new promise which is fulfilled with an array of fulfillment values for the passed promises or rejects with the reason of the first promise that rejects. |
-| `Promise.race(promises)`| Returns a new promise which is fulfilled/rejected with the result/error of the first settled promise from the array of passed promises. |
+`Promise.all` es especialmente utilizada cuando se necesita correr tareas en paralelo. `Promise.race` hace que implementar cosas como el tiempo de espera a las promesas sea más fácil.
 
-`Promise.all` is especially useful when there is a need to run tasks in parallel. `Promise.race` makes it easier to implement things like timeouts for promises.
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-**[⬆ back to top](#table-of-contents)**
+### Async/Await son aún más limpios que las promesas
 
-### Async/Await are even cleaner than Promises
+Con la sintaxis de `async`/`await` puedes escribir código que sea mucho más limpio y más legible que las promesas encadenadas. En una función prefijada con la palabra clave `async` tienes la capacidad de decirle a JavaScript que pause la ejecución del código con la palabra clave `await` (cuando es usado en una promesa).
 
-With `async`/`await` syntax you can write code that is far cleaner and more understandable than chained promises. Within a function prefixed with `async` keyword, you have a way to tell the JavaScript runtime to pause the execution of code on the `await` keyword (when used on a promise).
-
-**Bad:**
+**Mal:**
 
 ```ts
 import { get } from 'request';
@@ -2345,15 +2303,18 @@ import { promisify } from 'util';
 const write = util.promisify(writeFile);
 
 function downloadPage(url: string, saveTo: string): Promise<string> {
-  return get(url).then(response => write(saveTo, response));
+  return get(url).then((response) => write(saveTo, response));
 }
 
-downloadPage('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', 'article.html')
-  .then(content => console.log(content))
-  .catch(error => console.error(error));  
+downloadPage(
+  'https://en.wikipedia.org/wiki/Robert_Cecil_Martin',
+  'article.html',
+)
+  .then((content) => console.log(content))
+  .catch((error) => console.error(error));
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 import { get } from 'request';
@@ -2369,7 +2330,9 @@ async function downloadPage(url: string): Promise<string> {
 
 // somewhere in an async function
 try {
-  const content = await downloadPage('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
+  const content = await downloadPage(
+    'https://en.wikipedia.org/wiki/Robert_Cecil_Martin',
+  );
   await write('article.html', content);
   console.log(content);
 } catch (error) {
@@ -2377,22 +2340,20 @@ try {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-## Error Handling
+## Manejo de errores
 
-Thrown errors are a good thing! They mean the runtime has successfully identified when something in your program has gone wrong and it's letting you know by stopping function
-execution on the current stack, killing the process (in Node), and notifying you in the console with a stack trace.
+¡Los errores son buenos! Significan que tu programa identificó satisfactoriamente cuando algo salió mal dentro de él y te lo hace saber al parar la ejecución de la función actual, matando el proceso (en Node) y notificándote en la consola con un rastro para que puedas dirigirte hasta el error.
 
-### Always use Error for throwing or rejecting
+### Siempre utiliza Error para el lanzamiento o el rechazamiento
 
-JavaScript as well as TypeScript allow you to `throw` any object. A Promise can also be rejected with any reason object.  
-It is advisable to use the `throw` syntax with an `Error` type. This is because your error might be caught in higher level code with a `catch` syntax.
-It would be very confusing to catch a string message there and would make
-[debugging more painful](https://basarat.gitbook.io/typescript/type-system/exceptions#always-use-error).  
-For the same reason you should reject promises with `Error` types.
+JavaScript, al igual que TypeScript, te permiten lanzar (`throw`) cualquier objeto. Una promesa puede también ser rechazada por cualquier objeto de razón.
+Es aconsejable que utilices la sintaxis de `throw` con la del tipo `Error`. Esto es porque el error puede ser avistado en un código de nivel superior con la sintaxis de `catch`.
+Sería confuso atrapar un mensaje tipo string y [la depuración sería más dolorosa](https://basarat.gitbook.io/typescript/type-system/exceptions#always-use-error).
+Por la misma razón deberías rechazar promesas con el tipo `Error`.
 
-**Bad:**
+**Mal:**
 
 ```ts
 function calculateTotal(items: Item[]): number {
@@ -2404,7 +2365,7 @@ function get(): Promise<Item[]> {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function calculateTotal(items: Item[]): number {
@@ -2415,21 +2376,20 @@ function get(): Promise<Item[]> {
   return Promise.reject(new Error('Not implemented.'));
 }
 
-// or equivalent to:
-
+// o equivalente a:
 async function get(): Promise<Item[]> {
   throw new Error('Not implemented.');
 }
 ```
 
-The benefit of using `Error` types is that it is supported by the syntax `try/catch/finally` and implicitly all errors have the `stack` property which
-is very powerful for debugging.  
-There are also other alternatives, not to use the `throw` syntax and instead always return custom error objects. TypeScript makes this even easier.
-Consider the following example:
+El beneficio de utilizar el tipo `Error` es que es soportado por la sintaxis `try/catch/finally` e implícitamente todos los errores tienen la propiedad `stack`,
+la cual es muy poderosa a la hora de la depuración.
+Existen también otras alternativas, no utilizar la sintaxis de `throw` y en vez de eso siempre devolver un error personalizado. TypeScript hace que esto sea aún más fácil.
+Considera el siguiente ejemplo:
 
 ```ts
-type Result<R> = { isError: false, value: R };
-type Failure<E> = { isError: true, error: E };
+type Result<R> = { isError: false; value: R };
+type Failure<E> = { isError: true; error: E };
 type Failable<R, E> = Result<R> | Failure<E>;
 
 function calculateTotal(items: Item[]): Failable<number, 'empty'> {
@@ -2442,15 +2402,15 @@ function calculateTotal(items: Item[]): Failable<number, 'empty'> {
 }
 ```
 
-For the detailed explanation of this idea refer to the [original post](https://medium.com/@dhruvrajvanshi/making-exceptions-type-safe-in-typescript-c4d200ee78e9).
+Para una explicación más detallada de esta idea lee el [post original](https://medium.com/@dhruvrajvanshi/making-exceptions-type-safe-in-typescript-c4d200ee78e9).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Don't ignore caught errors
+### No ignores errores avistados
 
-Doing nothing with a caught error doesn't give you the ability to ever fix or react to said error. Logging the error to the console (`console.log`) isn't much better as often it can get lost in a sea of things printed to the console. If you wrap any bit of code in a `try/catch` it means you think an error may occur there and therefore you should have a plan, or create a code path, for when it occurs.
+No hacer nada con un error avistado no te da la habilidad ni de solucionarlo ni de reaccionar a tal error. Imprimir el error en la consola (`console.log`) no es tampoco muy bueno ya que a veces puede perderse en el mar de líneas imprimidas en la consola. Si envuelves cualquier bit de código en `try/catch` significa que crees que el error puede ocurrir allí y por lo tanto deberías tener un plan o crear una ruta de código para cuando esto suceda.
 
-**Bad:**
+**Mal:**
 
 ```ts
 try {
@@ -2459,19 +2419,19 @@ try {
   console.log(error);
 }
 
-// or even worse
+// o peor aun
 
 try {
   functionThatMightThrow();
 } catch (error) {
-  // ignore error
+  // ignorar error
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
-import { logger } from './logging'
+import { logger } from './logging';
 
 try {
   functionThatMightThrow();
@@ -2480,13 +2440,13 @@ try {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Don't ignore rejected promises
+### No ignores promesas rechazadas
 
-For the same reason you shouldn't ignore caught errors from `try/catch`.
+Por la misma razón por la cual no deberías ignorar errores avistados de `try/catch`.
 
-**Bad:**
+**Mal:**
 
 ```ts
 getUser()
@@ -2498,10 +2458,10 @@ getUser()
   });
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
-import { logger } from './logging'
+import { logger } from './logging';
 
 getUser()
   .then((user: User) => {
@@ -2511,7 +2471,7 @@ getUser()
     logger.log(error);
   });
 
-// or using the async/await syntax:
+// o usa la sintaxis de async/await:
 
 try {
   const user = await getUser();
@@ -2521,31 +2481,32 @@ try {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-## Formatting
+## Formato
 
-Formatting is subjective. Like many rules herein, there is no hard and fast rule that you must follow. The main point is *DO NOT ARGUE* over formatting. There are tons of tools to automate this. Use one! It's a waste of time and money for engineers to argue over formatting. The general rule to follow is *keep consistent formatting rules*.  
+El formato es subjetivo. Al igual que muchas reglas en esta guía, no hay ninguna regla dura que debas seguir. El punto principal es _NO DISCUTIR_ sobre el formato. Hay muchas herramientas para automatizar esto. ¡Usa una de ellas! Es una pérdida de tiempo y dinero para los ingenieros discutir sobre el formato. La regla general es _mantener reglas de formato consistentes_.
 
-For TypeScript there is a powerful tool called [ESLint](https://typescript-eslint.io/). It's a static analysis tool that can help you improve dramatically the readability and maintainability of your code. There are ready to use ESLint configurations that you can reference in your projects:
+Para TypeScript hay una poderosa herramienta llamada [ESLint](https://typescript-eslint.io/). Es una herramienta de análisis estático que puede ayudarte a mejorar dramáticamente la legibilidad y el mantenimiento de tu código. Hay configuraciones de ESLint que están listas para usar en tus proyectos:
 
-- [ESLint Config Airbnb](https://www.npmjs.com/package/eslint-config-airbnb-typescript) - Airbnb style guide
+- [ESLint Config Airbnb](https://www.npmjs.com/package/eslint-config-airbnb-typescript) - Guia de estilos de Airbnb
 
-- [ESLint Base Style Config](https://www.npmjs.com/package/eslint-plugin-base-style-config) - a Set of Essential ESLint rules for JS, TS and React
+- [ESLint Base Style Config](https://www.npmjs.com/package/eslint-plugin-base-style-config) - Un conjunto de reglas esenciales de ESLint para JS, TS y React
 
-- [ESLint + Prettier](https://www.npmjs.com/package/eslint-config-prettier) - lint rules for [Prettier](https://github.com/prettier/prettier) code formatter
+- [ESLint + Prettier](https://www.npmjs.com/package/eslint-config-prettier) - Reglas de lint para el formateador Prettier
 
-Refer also to this great [TypeScript StyleGuide and Coding Conventions](https://basarat.gitbook.io/typescript/styleguide) source.
+Consulte también esta magnífica fuente [TypeScript StyleGuide and Coding Conventions](https://basarat.gitbook.io/typescript/styleguide)
 
-### Migrating from TSLint to ESLint
+### Migrando de TSLint a ESLint
 
-If you are looking for help in migrating from TSLint to ESLint, you can check out this project: <https://github.com/typescript-eslint/tslint-to-eslint-config>
+Si necesita ayuda para migrar de TSLint a ESLint, puede consultar este proyecto:
+<https://github.com/typescript-eslint/tslint-to-eslint-config>
 
-### Use consistent capitalization
+### Utiliza capitalización consistente
 
-Capitalization tells you a lot about your variables, functions, etc. These rules are subjective, so your team can choose whatever they want. The point is, no matter what you all choose, just *be consistent*.
+La capitalización te dice mucho sobre tus variables, funciones, etc. Estas reglas son subjetivas, así que tu equipo puede escoger cualquiera. El punto es, no importa cual elijas, simplemente se _consistente_.
 
-**Bad:**
+**Mal:**
 
 ```ts
 const DAYS_IN_WEEK = 7;
@@ -2557,11 +2518,15 @@ const Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
 function eraseDatabase() {}
 function restore_database() {}
 
-type animal = { /* ... */ }
-type Container = { /* ... */ }
+type animal = {
+  /* ... */
+};
+type Container = {
+  /* ... */
+};
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 const DAYS_IN_WEEK = 7;
@@ -2576,27 +2541,30 @@ const beatlesSongs = SONGS.filter((song) => isBeatlesSong(song));
 function eraseDatabase() {}
 function restoreDatabase() {}
 
-type Animal = { /* ... */ }
-type Container = { /* ... */ }
+type Animal = {
+  /* ... */
+};
+type Container = {
+  /* ... */
+};
 ```
 
-Prefer using `PascalCase` for class, interface, type and namespace names.  
-Prefer using `camelCase` for variables, functions and class members.
-Prefer using capitalized `SNAKE_CASE` for constants.
+Es preferible utilizar `PascalCase` para las clases, para el interfaz, el tipo y los nombres.</br>
+Es preferible utilizar `camelCase` para las variables, las funciones y los miembros de las clases.</br>
+Es preferible utilizar `SNAKE_CASE` para las constantes.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Function callers and callees should be close
+### Las funciones que llaman y las que son llamadas deben estar cerca unas de la otras
 
-If a function calls another, keep those functions vertically close in the source file. Ideally, keep the caller right above the callee.
-We tend to read code from top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Si una función llama a otra, mantén a esas funciones verticalmente cerca en el archivo. Idealmente, mantén a la función que llama justo encima de la que es llamada.
+Tendemos a leer el código de arriba a abajo, como un periódico. Es por esto que, haz que tu código se lea de esta manera.
 
-**Bad:**
+**Mal:**
 
 ```ts
 class PerformanceReview {
-  constructor(private readonly employee: Employee) {
-  }
+  constructor(private readonly employee: Employee) {}
 
   private lookupPeers() {
     return db.lookup(this.employee.id, 'peers');
@@ -2632,12 +2600,11 @@ const review = new PerformanceReview(employee);
 review.review();
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class PerformanceReview {
-  constructor(private readonly employee: Employee) {
-  }
+  constructor(private readonly employee: Employee) {}
 
   review() {
     this.getPeerReviews();
@@ -2673,27 +2640,26 @@ const review = new PerformanceReview(employee);
 review.review();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Organize imports
+### Organiza los importes
 
-With clean and easy to read import statements you can quickly see the dependencies of current code. Make sure you apply following good practices for `import` statements:
+Con declaraciones de importes limpias y fáciles de leer puedes rápidamente ver las dependecias del código actual. Asegúrate de aplicar las siguientes prácticas para las declaraciones de importes (`import`):
 
-- Import statements should be alphabetized and grouped.
-- Unused imports should be removed.
-- Named imports must be alphabetized (i.e. `import {A, B, C} from 'foo';`)
-- Import sources must be alphabetized within groups, i.e.: `import * as foo from 'a'; import * as bar from 'b';`
-- Prefer using `import type` instead of `import` when importing only types from a file to avoid dependency cycles, as these imports are erased at runtime
-- Groups of imports are delineated by blank lines.
-- Groups must respect following order:
-  - Polyfills (i.e. `import 'reflect-metadata';`)
-  - Node builtin modules (i.e. `import fs from 'fs';`)
-  - external modules (i.e. `import { query } from 'itiriri';`)
-  - internal modules (i.e `import { UserService } from 'src/services/userService';`)
-  - modules from a parent directory (i.e. `import foo from '../foo'; import qux from '../../foo/qux';`)
-  - modules from the same or a sibling's directory (i.e. `import bar from './bar'; import baz from './bar/baz';`)
+- Las declaraciones de importes deben ser ordenadas alfabéticamente y agrupadas.
+- Las declaraciones de importes que no se utilicen deben ser eliminadas.
+- Las declaraciones de importes nombradas deben ser ordenadas alfabéticamente (ej. `import {A, B, C} from 'foo';`).
+- Las fuentes de importes deben ser ordenadas alfabéticamente entre los grupos, ej.: `import * as foo from 'a'; import * as bar from 'b';`.
+- Los grupos de importes deben ser delineados por líneas en blanco.
+- Los grupos deben seguir el siguiente orden:
+- Polifunciones (ej. `import 'reflect-metadata';`).
+- Node builtin modules (i.e. `import fs from 'fs';`).
+- Módulos externos (ej. `import { query } from 'itiriri';`).
+- Módulos internos (ej `import { UserService } from 'src/services/userService';`).
+- Módulos de un directorio superior (ej. `import foo from '../foo'; import qux from '../../foo/qux';`).
+- Módulos del mismo directorio o de un directorio primo (ej. `import bar from './bar'; import baz from './bar/baz';.
 
-**Bad:**
+**Mal:**
 
 ```ts
 import { TypeDefinition } from '../types/typeDefinition';
@@ -2706,7 +2672,7 @@ import { BindingScopeEnum, Container } from 'inversify';
 import 'reflect-metadata';
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 import 'reflect-metadata';
@@ -2722,21 +2688,20 @@ import { ApiCredentials, Adapters } from './common/api/authorization';
 import { ConfigPlugin } from './plugins/config/configPlugin';
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Use typescript aliases
+### Usa las alias de TypeScript
 
-Create prettier imports by defining the paths and baseUrl properties in the compilerOptions section in the `tsconfig.json`
+Crea importes más bonitos definiendo las direcciones y las propiedades baseUrl en la sección compilerOptions en el archivo `tsconfig.json`.
+Esto evitará largas direcciones relativas al hacer importes.
 
-This will avoid long relative paths when doing imports.
-
-**Bad:**
+**Mal:**
 
 ```ts
 import { UserService } from '../../../services/UserService';
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 import { UserService } from '@services/UserService';
@@ -2745,51 +2710,54 @@ import { UserService } from '@services/UserService';
 ```js
 // tsconfig.json
 ...
-  "compilerOptions": {
-    ...
-    "baseUrl": "src",
-    "paths": {
-      "@services": ["services/*"]
-    }
-    ...
-  }
+"compilerOptions": {
+...
+"baseUrl": "src",
+"paths": {
+"@services": ["services/*"]
+}
+...
+}
 ...
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-## Comments
+## Comentarios
 
-The use of a comments is an indication of failure to express without them. Code should be the only source of truth.
-  
-> Don’t comment bad code—rewrite it.  
-> — *Brian W. Kernighan and P. J. Plaugher*
+El uso de comentarios indica que hay una falta de expresión sin ellos. El código en sí debería ser la única fuente verdadera.
 
-### Prefer self explanatory code instead of comments
+> Don’t comment bad code—rewrite it.
+> — _Brian W. Kernighan and P. J. Plaugher_
 
-Comments are an apology, not a requirement. Good code *mostly* documents itself.
+### Es preferible el código que se entiende por sí mismo a tener que utilizar comentarios.
 
-**Bad:**
+Los comentarios son una analogía, no un requerimiento. Un buen código _casi siempre_ se entiende por sí mismo.
+
+**Mal:**
 
 ```ts
-// Check if subscription is active.
-if (subscription.endDate > Date.now) {  }
+// Checa si la suscripcion esta activa
+if (subscription.endDate > Date.now) {
+}
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 const isSubscriptionActive = subscription.endDate > Date.now;
-if (isSubscriptionActive) { /* ... */ }
+if (isSubscriptionActive) {
+  /* ... */
+}
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Don't leave commented out code in your codebase
+### No dejes código comentado en tu archivo base
 
-Version control exists for a reason. Leave old code in your history.
+El control de versiones existe por una razón. Deja el código viejo en tu historia.
 
-**Bad:**
+**Mal:**
 
 ```ts
 type User = {
@@ -2797,25 +2765,24 @@ type User = {
   email: string;
   // age: number;
   // jobPosition: string;
-}
+};
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 type User = {
   name: string;
   email: string;
-}
+};
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Don't have journal comments
+### No tengas comentarios de diario
 
-Remember, use version control! There's no need for dead code, commented code, and especially journal comments. Use `git log` to get history!
-
-**Bad:**
+Recuerda, ¡usa el control de versiones! No hay necesidad de tener código sin usar, código comentado y especialmente comentarios de diario. ¡Usa `git log` para ver la historia!
+**Mal:**
 
 ```ts
 /**
@@ -2829,7 +2796,7 @@ function combine(a: number, b: number): number {
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function combine(a: number, b: number): number {
@@ -2837,14 +2804,14 @@ function combine(a: number, b: number): number {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### Avoid positional markers
+### Evita marcas posicionales
 
-They usually just add noise. Let the functions and variable names along with the proper indentation and formatting give the visual structure to your code.  
-Most IDE support code folding feature that allows you to collapse/expand blocks of code (see Visual Studio Code [folding regions](https://code.visualstudio.com/updates/v1_17#_folding-regions)).
+Ellas usualmente solo añaden ruido. Deja que las funciones y los nombres de las variales, junto con la indentación y el formato den a tu código una estructura visual.
+La mayoría de los IDEs soportan el código dentro de carpetas, lo que te permite colapsar y expandir bloques de código (ve Visual Studio Code ["folding regions (regiones de carpetas)"](https://code.visualstudio.com/updates/v1_17#_folding-regions)).
 
-**Bad:**
+**Mal:**
 
 ```ts
 ////////////////////////////////////////////////////////////////////////////////
@@ -2873,10 +2840,10 @@ class Client {
   private describeContact(): string {
     // ...
   }
-};
+}
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 class Client {
@@ -2896,57 +2863,52 @@ class Client {
   private describeContact(): string {
     // ...
   }
-};
+}
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-### TODO comments
+### Comentarios TODO
 
-When you find yourself that you need to leave notes in the code for some later improvements,
-do that using `// TODO` comments. Most IDE have special support for those kinds of comments so that
-you can quickly go over the entire list of todos.  
+Cuando necesitas dejar notas en el código para futuras mejoras, utiliza
+los comentarios `// TODO`. La mayoría de los IDEs tienen soporte de este tipo de comentarios para que
+puedas navegar rápidamente por la lista completa de comentarios "TODO".
+Recuerda igualmente que un comentario _TODO_ no es una excusa de un mal código.
 
-Keep in mind however that a *TODO* comment is not an excuse for bad code. 
-
-**Bad:**
+**Mal:**
 
 ```ts
 function getActiveSubscriptions(): Promise<Subscription[]> {
-  // ensure `dueDate` is indexed.
+  // asegurarse que `dueDate` esta indexeado.
   return db.subscriptions.find({ dueDate: { $lte: new Date() } });
 }
 ```
 
-**Good:**
+**Bien:**
 
 ```ts
 function getActiveSubscriptions(): Promise<Subscription[]> {
-  // TODO: ensure `dueDate` is indexed.
+  // TODO: asegurarse que `dueDate` esta indexeado.
   return db.subscriptions.find({ dueDate: { $lte: new Date() } });
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ volver al inicio](#tabla-de-contenidos)**
 
-## Translations
+## Traducciones
 
-This is also available in other languages:
-- ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [vitorfreitas/clean-code-typescript](https://github.com/vitorfreitas/clean-code-typescript)
-- ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese**: 
-  - [beginor/clean-code-typescript](https://github.com/beginor/clean-code-typescript)
-  - [pipiliang/clean-code-typescript](https://github.com/pipiliang/clean-code-typescript)
-- ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **French**: [ralflorent/clean-code-typescript](https://github.com/ralflorent/clean-code-typescript)
-- ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [mheob/clean-code-typescript](https://github.com/mheob/clean-code-typescript)
-- ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [MSakamaki/clean-code-typescript](https://github.com/MSakamaki/clean-code-typescript)
-- ![ko](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [738/clean-code-typescript](https://github.com/738/clean-code-typescript)
-- ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [Real001/clean-code-typescript](https://github.com/Real001/clean-code-typescript)
-- ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [JoseDeFreitas/clean-code-typescript](https://github.com/JoseDeFreitas/clean-code-typescript)
-- ![tr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Turkey.png) **Turkish**: [ozanhonamlioglu/clean-code-typescript](https://github.com/ozanhonamlioglu/clean-code-typescript)
-- ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hoangsetup/clean-code-typescript](https://github.com/hoangsetup/clean-code-typescript)
+Esta guía está también disponible en los siguientes idiomas:
 
-References will be added once translations are completed.  
-Check this [discussion](https://github.com/labs42io/clean-code-typescript/issues/15) for more details and progress.
-You can make an indispensable contribution to *Clean Code* community by translating this to your language.
-
-**[⬆ back to top](#table-of-contents)**
+- ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Portugués de Brasil**: [vitorfreitas/clean-code-typescript](https://github.com/vitorfreitas/clean-code-typescript)
+- ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chino**:
+- [beginor/clean-code-typescript](https://github.com/beginor/clean-code-typescript)
+- [pipiliang/clean-code-typescript](https://github.com/pipiliang/clean-code-typescript)
+- ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **Francés**: [ralflorent/clean-code-typescript](https://github.com/ralflorent/clean-code-typescript)
+- ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japonés**: [MSakamaki/clean-code-typescript](https://github.com/MSakamaki/clean-code-typescript)
+- ![ko](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Coreano**: [738/clean-code-typescript](https://github.com/738/clean-code-typescript)
+- ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Ruso**: [Real001/clean-code-typescript](https://github.com/Real001/clean-code-typescript)
+- ![tr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Turkey.png) **Turco**: [ozanhonamlioglu/clean-code-typescript](https://github.com/ozanhonamlioglu/clean-code-typescript)
+- ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamita**: [hoangsetup/clean-code-typescript](https://github.com/hoangsetup/clean-code-typescript)
+  Las referencias serán añadidas cuando las traducciones sean completadas.
+  Pásate por esta [discusión](https://github.com/labs42io/clean-code-typescript/issues/15) para más detalles sobre el progreso.
+  Puedes hacer una indispensable contribución a la comunidad de _Clean Code_ traduciendo esta guía a tu idioma.
