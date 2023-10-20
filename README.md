@@ -2786,10 +2786,10 @@ Recuerda, ¡usa el control de versiones! No hay necesidad de tener código sin u
 
 ```ts
 /**
- * 2016-12-20: Removed monads, didn't understand them (RM)
- * 2016-10-01: Improved using special monads (JP)
- * 2016-02-03: Added type-checking (LI)
- * 2015-03-14: Implemented combine (JR)
+ * 2016-12-20: Eliminadas las mónadas, no las entendía (RM).
+ * 2016-10-01: Mejorado el uso de mónadas especiales (JP)
+ * 2016-02-03: Añadida comprobación de tipos (LI)
+ * 2015-03-14: Implementado combinar (JR)
  */
 function combine(a: number, b: number): number {
   return a + b;
@@ -2824,14 +2824,14 @@ class Client {
   contact: Contact;
 
   ////////////////////////////////////////////////////////////////////////////////
-  // public methods
+  // metodos publicos
   ////////////////////////////////////////////////////////////////////////////////
   public describe(): string {
     // ...
   }
 
   ////////////////////////////////////////////////////////////////////////////////
-  // private methods
+  // metodos privados
   ////////////////////////////////////////////////////////////////////////////////
   private describeAddress(): string {
     // ...
@@ -2909,6 +2909,9 @@ Esta guía está también disponible en los siguientes idiomas:
 - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Ruso**: [Real001/clean-code-typescript](https://github.com/Real001/clean-code-typescript)
 - ![tr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Turkey.png) **Turco**: [ozanhonamlioglu/clean-code-typescript](https://github.com/ozanhonamlioglu/clean-code-typescript)
 - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamita**: [hoangsetup/clean-code-typescript](https://github.com/hoangsetup/clean-code-typescript)
-  Las referencias serán añadidas cuando las traducciones sean completadas.
-  Pásate por esta [discusión](https://github.com/labs42io/clean-code-typescript/issues/15) para más detalles sobre el progreso.
-  Puedes hacer una indispensable contribución a la comunidad de _Clean Code_ traduciendo esta guía a tu idioma.
+
+Las referencias serán añadidas cuando las traducciones sean completadas.
+Pásate por esta [discusión](https://github.com/labs42io/clean-code-typescript/issues/15) para más detalles sobre el progreso.
+Puedes hacer una indispensable contribución a la comunidad de _Clean Code_ traduciendo esta guía a tu idioma.
+
+**[⬆ volver al inicio](#tabla-de-contenidos)**
