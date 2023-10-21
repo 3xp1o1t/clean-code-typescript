@@ -2910,8 +2910,10 @@ Esta guía está también disponible en los siguientes idiomas:
 - ![tr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Turkey.png) **Turco**: [ozanhonamlioglu/clean-code-typescript](https://github.com/ozanhonamlioglu/clean-code-typescript)
 - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamita**: [hoangsetup/clean-code-typescript](https://github.com/hoangsetup/clean-code-typescript)
 
+
 Las referencias serán añadidas cuando las traducciones sean completadas.
 Pásate por esta [discusión](https://github.com/labs42io/clean-code-typescript/issues/15) para más detalles sobre el progreso.
 Puedes hacer una indispensable contribución a la comunidad de _Clean Code_ traduciendo esta guía a tu idioma.
+
 
 **[⬆ volver al inicio](#tabla-de-contenidos)**
